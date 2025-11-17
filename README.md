@@ -89,6 +89,57 @@ result = model.generate_progression(key='C', style='jazz')
   - Voice leading optimization
 - **Flexible Tokenization**: Convert music theory concepts to/from tokens
 
+## 📊 Training Data
+
+See **[TRAINING_DATA.md](TRAINING_DATA.md)** for comprehensive data sources including:
+
+**Chord Progression Datasets:**
+- music21 corpus (1,000+ classical pieces)
+- McGill Billboard Dataset (1,000 pop songs)
+- Lakh MIDI Dataset (176,000+ MIDI files)
+- iReal Pro (10,000+ jazz standards)
+- Hooktheory TheoryTab (40,000+ analyzed songs)
+
+**Quick Start:**
+```bash
+# Prepare training data (interactive script)
+python scripts/prepare_training_data.py
+
+# Or quick start dataset
+python -c "from data.data_loaders import quick_start_dataset; quick_start_dataset()"
+
+# Train on the data
+python train.py --task progression --epochs 20
+```
+
+## 🎸 Blues & Rock Lick Database
+
+**30+ authentic guitar licks from legendary players (1960s-1980s):**
+- **Blues**: BB King, Albert King, Muddy Waters, Stevie Ray Vaughan, T-Bone Walker
+- **Rock**: Jimi Hendrix, Eric Clapton, Jimmy Page, Carlos Santana, David Gilmour, Jeff Beck, Eddie Van Halen, Angus Young, Duane Allman
+
+**Features:**
+- Authentic transcriptions with technique notes
+- Difficulty ratings (1-5)
+- Decade tags (60s, 70s, 80s)
+- Technique tags (bends, vibrato, slides, tapping, etc.)
+- Context information (works over G7, blues, etc.)
+
+**Usage:**
+```python
+from data.lick_database import BluesRockLickDatabase
+
+db = BluesRockLickDatabase()
+hendrix_licks = db.get_licks_by_guitarist("hendrix")
+sixties_licks = db.get_licks_by_era("60s")
+bend_licks = db.get_technique_licks("bend")
+```
+
+**Demo:**
+```bash
+python examples/lick_database_demo.py
+```
+
 ## 🧠 Intelligence System
 
 See **[INTELLIGENCE.md](INTELLIGENCE.md)** for detailed documentation on:
@@ -107,10 +158,11 @@ See **[INTELLIGENCE.md](INTELLIGENCE.md)** for detailed documentation on:
 
 ```bash
 # Run all demos
-python examples/basic_usage.py
-python examples/melody_suggestions_demo.py
-python examples/harmonic_analysis_demo.py
-python examples/intelligence_demo.py  # 🆕 All intelligence features
+python examples/basic_usage.py                    # Music theory basics
+python examples/melody_suggestions_demo.py        # Melody generation
+python examples/harmonic_analysis_demo.py         # Advanced harmony
+python examples/intelligence_demo.py              # 🆕 All intelligence features
+python examples/lick_database_demo.py             # 🆕 Guitar lick database
 ```
 
 ## Roadmap
