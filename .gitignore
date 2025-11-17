@@ -34,7 +34,7 @@ env/
 *~
 
 # Model checkpoints and training outputs
-checkpoints/
+checkpoints*/
 *.pth
 *.pt
 *.bin
