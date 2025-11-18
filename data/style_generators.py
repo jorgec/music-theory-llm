@@ -105,6 +105,57 @@ class JazzGenerator:
 
         return progressions
 
+    @staticmethod
+    def generate_advanced_jazz(key_root: Note, num_variations: int = 10) -> List[ChordProgression]:
+        """Generate jazz with advanced extended and altered chords"""
+        progressions = []
+        scale = Scale.major(key_root)
+
+        advanced_patterns = [
+            # ii-V7alt-Imaj9 (altered dominant resolution)
+            [
+                Chord(scale.notes[1], ChordQuality.MINOR_9),
+                Chord(scale.notes[4], ChordQuality.ALTERED),
+                Chord(scale.notes[0], ChordQuality.MAJOR_9),
+            ],
+            # iim7-V7b9-Imaj7 (bebop classic)
+            [
+                Chord(scale.notes[1], ChordQuality.MINOR_7),
+                Chord(scale.notes[4], ChordQuality.DOMINANT_7_FLAT_9),
+                Chord(scale.notes[0], ChordQuality.MAJOR_7),
+            ],
+            # iim7b5-V7#9-im7 (minor ii-V-i)
+            [
+                Chord(scale.notes[1], ChordQuality.HALF_DIMINISHED_7),
+                Chord(scale.notes[4], ChordQuality.DOMINANT_7_SHARP_9),
+                Chord(scale.notes[0], ChordQuality.MINOR_7),
+            ],
+            # Imaj13-VI7#11-iim9-V13 (sophisticated)
+            [
+                Chord(scale.notes[0], ChordQuality.MAJOR_13),
+                Chord(scale.notes[5], ChordQuality.DOMINANT_7_SHARP_11),
+                Chord(scale.notes[1], ChordQuality.MINOR_9),
+                Chord(scale.notes[4], ChordQuality.DOMINANT_13),
+            ],
+            # Imaj9-#IVm7b5-VIIm7b5-IIImaj7 (Coltrane changes inspired)
+            [
+                Chord(scale.notes[0], ChordQuality.MAJOR_9),
+                Chord(scale.notes[3], ChordQuality.HALF_DIMINISHED_7),
+                Chord(scale.notes[6], ChordQuality.HALF_DIMINISHED_7),
+                Chord(scale.notes[2], ChordQuality.MAJOR_7),
+            ],
+        ]
+
+        for pattern in advanced_patterns:
+            for _ in range(max(1, num_variations // len(advanced_patterns))):
+                progressions.append(ChordProgression(
+                    chords=pattern,
+                    scale=scale,
+                    style='jazz'
+                ))
+
+        return progressions
+
 
 class BluesGenerator:
     """Generate blues progressions"""
@@ -183,6 +234,53 @@ class BluesGenerator:
                 scale=scale,
                 style='blues_minor'
             ))
+
+        return progressions
+
+    @staticmethod
+    def generate_advanced_blues(key_root: Note, num_variations: int = 10) -> List[ChordProgression]:
+        """Generate blues with advanced altered dominant chords"""
+        progressions = []
+        scale = Scale.major(key_root)
+
+        advanced_patterns = [
+            # Blues with 7#9 (Hendrix chord)
+            [
+                Chord(scale.notes[0], ChordQuality.DOMINANT_7_SHARP_9),  # I7#9
+                Chord(scale.notes[3], ChordQuality.DOMINANT_7_SHARP_9),  # IV7#9
+                Chord(scale.notes[0], ChordQuality.DOMINANT_7_SHARP_9),  # I7#9
+                Chord(scale.notes[0], ChordQuality.DOMINANT_7),          # I7
+            ],
+            # Blues with 7b9
+            [
+                Chord(scale.notes[0], ChordQuality.DOMINANT_9),          # I9
+                Chord(scale.notes[3], ChordQuality.DOMINANT_9),          # IV9
+                Chord(scale.notes[0], ChordQuality.DOMINANT_7_FLAT_9),   # I7b9
+                Chord(scale.notes[4], ChordQuality.DOMINANT_7_FLAT_9),   # V7b9
+            ],
+            # Blues with diminished passing chords
+            [
+                Chord(scale.notes[0], ChordQuality.DOMINANT_7),          # I7
+                Chord(scale.notes[1], ChordQuality.DIMINISHED_7),        # #Idim7
+                Chord(scale.notes[3], ChordQuality.DOMINANT_7),          # IV7
+                Chord(scale.notes[0], ChordQuality.DOMINANT_13),         # I13
+            ],
+            # Jazz-blues with altered chords
+            [
+                Chord(scale.notes[0], ChordQuality.MAJOR_9),             # Imaj9
+                Chord(scale.notes[3], ChordQuality.DOMINANT_13),         # IV13
+                Chord(scale.notes[1], ChordQuality.MINOR_9),             # iim9
+                Chord(scale.notes[4], ChordQuality.ALTERED),             # V7alt
+            ],
+        ]
+
+        for pattern in advanced_patterns:
+            for _ in range(max(1, num_variations // len(advanced_patterns))):
+                progressions.append(ChordProgression(
+                    chords=pattern,
+                    scale=scale,
+                    style='blues'
+                ))
 
         return progressions
 
@@ -544,14 +642,16 @@ def generate_style_dataset(style: str, num_samples: int = 100) -> List[ChordProg
 
     if style == 'jazz':
         for key in keys:
-            progressions.extend(JazzGenerator.generate_ii_v_i(key, num_samples // (len(keys) * 3)))
-            progressions.extend(JazzGenerator.generate_turnarounds(key, num_samples // (len(keys) * 3)))
-        progressions.extend(JazzGenerator.generate_modal_jazz(num_samples // 3))
+            progressions.extend(JazzGenerator.generate_ii_v_i(key, num_samples // (len(keys) * 4)))
+            progressions.extend(JazzGenerator.generate_turnarounds(key, num_samples // (len(keys) * 4)))
+            progressions.extend(JazzGenerator.generate_advanced_jazz(key, num_samples // (len(keys) * 4)))
+        progressions.extend(JazzGenerator.generate_modal_jazz(num_samples // 4))
 
     elif style == 'blues':
         for key in keys:
-            progressions.extend(BluesGenerator.generate_12_bar_blues(key, num_samples // (len(keys) * 2)))
-            progressions.extend(BluesGenerator.generate_minor_blues(key, num_samples // (len(keys) * 2)))
+            progressions.extend(BluesGenerator.generate_12_bar_blues(key, num_samples // (len(keys) * 3)))
+            progressions.extend(BluesGenerator.generate_minor_blues(key, num_samples // (len(keys) * 3)))
+            progressions.extend(BluesGenerator.generate_advanced_blues(key, num_samples // (len(keys) * 3)))
 
     elif style == 'progressive_metal':
         progressions.extend(ProgressiveMetalGenerator.generate_modal_metal(num_samples // 2))

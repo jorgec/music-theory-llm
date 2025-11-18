@@ -31,15 +31,34 @@ class ChordQuality(Enum):
     AUGMENTED_7 = [0, 4, 8, 10]  # Augmented triad + minor 7th
     MINOR_MAJOR_7 = [0, 3, 7, 11]  # Minor triad + major 7th
 
-    # Extended chords
+    # Extended chords (9ths)
     MAJOR_9 = [0, 4, 7, 11, 14]  # Maj7 + major 9th
     MINOR_9 = [0, 3, 7, 10, 14]  # Min7 + major 9th
     DOMINANT_9 = [0, 4, 7, 10, 14]  # Dom7 + major 9th
+    DOMINANT_7_FLAT_9 = [0, 4, 7, 10, 13]  # Dom7 + flat 9th (blues/jazz)
+    DOMINANT_7_SHARP_9 = [0, 4, 7, 10, 15]  # Dom7 + sharp 9th (Hendrix chord)
+
+    # Extended chords (11ths)
+    DOMINANT_11 = [0, 4, 7, 10, 14, 17]  # Dom7 + 9th + 11th
+    MINOR_11 = [0, 3, 7, 10, 14, 17]  # Min7 + 9th + 11th
+    MAJOR_11 = [0, 4, 7, 11, 14, 17]  # Maj7 + 9th + 11th
+
+    # Extended chords (13ths)
+    DOMINANT_13 = [0, 4, 7, 10, 14, 21]  # Dom7 + 9th + 13th (jazz)
+    MINOR_13 = [0, 3, 7, 10, 14, 21]  # Min7 + 9th + 13th
+    MAJOR_13 = [0, 4, 7, 11, 14, 21]  # Maj7 + 9th + 13th
+    DOMINANT_7_FLAT_13 = [0, 4, 7, 10, 20]  # Dom7 + flat 13th
+
+    # Altered chords (jazz)
+    ALTERED = [0, 4, 10, 13, 15, 20]  # 7alt: 1-3-b7-b9-#9-b13
+    DOMINANT_7_SHARP_11 = [0, 4, 7, 10, 18]  # Lydian dominant
 
     # Other common chords
     POWER_CHORD = [0, 7]  # Root + perfect 5th (no 3rd)
     MAJOR_6 = [0, 4, 7, 9]  # Major triad + major 6th
     MINOR_6 = [0, 3, 7, 9]  # Minor triad + major 6th
+    MAJOR_6_9 = [0, 4, 7, 9, 14]  # Major 6 + 9th
+    MINOR_6_9 = [0, 3, 7, 9, 14]  # Minor 6 + 9th (jazz)
 
 
 # Chord symbols mapping
@@ -57,12 +76,30 @@ CHORD_SYMBOLS = {
     ChordQuality.HALF_DIMINISHED_7: 'm7b5',
     ChordQuality.AUGMENTED_7: 'aug7',
     ChordQuality.MINOR_MAJOR_7: 'mMaj7',
+    # 9th chords
     ChordQuality.MAJOR_9: 'maj9',
     ChordQuality.MINOR_9: 'm9',
     ChordQuality.DOMINANT_9: '9',
+    ChordQuality.DOMINANT_7_FLAT_9: '7b9',
+    ChordQuality.DOMINANT_7_SHARP_9: '7#9',
+    # 11th chords
+    ChordQuality.DOMINANT_11: '11',
+    ChordQuality.MINOR_11: 'm11',
+    ChordQuality.MAJOR_11: 'maj11',
+    # 13th chords
+    ChordQuality.DOMINANT_13: '13',
+    ChordQuality.MINOR_13: 'm13',
+    ChordQuality.MAJOR_13: 'maj13',
+    ChordQuality.DOMINANT_7_FLAT_13: '7b13',
+    # Altered chords
+    ChordQuality.ALTERED: '7alt',
+    ChordQuality.DOMINANT_7_SHARP_11: '7#11',
+    # Other
     ChordQuality.POWER_CHORD: '5',
     ChordQuality.MAJOR_6: '6',
     ChordQuality.MINOR_6: 'm6',
+    ChordQuality.MAJOR_6_9: '6/9',
+    ChordQuality.MINOR_6_9: 'm6/9',
 }
 
 

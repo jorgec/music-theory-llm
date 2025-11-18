@@ -364,22 +364,146 @@ class LickRecommender:
             ],
             'blues': [
                 {
-                    'name': 'Classic Blues Lick',
-                    'intervals': [0, 3, 4, 5, 4, 3, 0],  # Minor pentatonic
+                    'name': 'Classic Blues Box',
+                    'intervals': [0, 3, 4, 5, 4, 3, 0],  # Minor pentatonic with blue note
                     'rhythm': 'swung',
-                    'description': 'Pentatonic blues lick with bends'
+                    'description': 'Blues box position 1 - pentatonic with bent blue note (b5)',
+                    'techniques': ['bend on 4th (blue note)', 'vibrato']
                 },
                 {
                     'name': 'BB King Box',
                     'intervals': [0, 3, 0, 3, 5, 6, 5, 3],
                     'rhythm': 'swung',
-                    'description': 'Classic BB King-style box pattern'
+                    'description': 'BB King signature box pattern with quick returns',
+                    'techniques': ['quick hammer-ons', 'wide vibrato']
                 },
                 {
                     'name': 'Turnaround Lick',
                     'intervals': [7, 6, 5, 4, 3, 2, 1, 0],
                     'rhythm': 'descending',
-                    'description': 'Chromatic descent for turnarounds'
+                    'description': 'Chromatic descent for I-VI-ii-V turnarounds',
+                    'techniques': ['chromatic run', 'swing eighth notes']
+                },
+                {
+                    'name': 'Albert King Lick',
+                    'intervals': [0, 3, 5, 3, 5, 7, 5, 3],
+                    'rhythm': 'laid-back',
+                    'description': 'Behind-the-beat phrasing in minor pentatonic',
+                    'techniques': ['heavy bends', 'behind the beat']
+                },
+                {
+                    'name': 'Stevie Ray Vaughan Lick',
+                    'intervals': [5, 4, 3, 0, 3, 5, 7, 10],
+                    'rhythm': 'aggressive',
+                    'description': 'Texas blues with blue note and octave jump',
+                    'techniques': ['aggressive bends', 'palm muting']
+                },
+                {
+                    'name': 'Double Stop Blues',
+                    'intervals': [0, 3, 0, 3, 5, 7, 5, 3],  # Play in 3rds
+                    'rhythm': 'chunky',
+                    'description': 'Double stop sixths - classic blues sound',
+                    'techniques': ['double stops', 'rake']
+                },
+                {
+                    'name': 'Slide Blues Lick',
+                    'intervals': [0, 5, 7, 10, 12, 10, 7, 5],
+                    'rhythm': 'smooth',
+                    'description': 'Open position slide lick',
+                    'techniques': ['slide', 'open tuning']
+                },
+                {
+                    'name': 'Muddy Waters Lick',
+                    'intervals': [0, 3, 4, 3, 0, 3, 5],
+                    'rhythm': 'heavy-swung',
+                    'description': 'Chicago blues with blue note emphasis',
+                    'techniques': ['heavy vibrato', 'quarter bends']
+                },
+                {
+                    'name': 'T-Bone Walker Lick',
+                    'intervals': [7, 5, 3, 5, 7, 10, 12],
+                    'rhythm': 'smooth-jazzy',
+                    'description': 'Jazz-blues hybrid with 6th interval',
+                    'techniques': ['smooth legato', 'light vibrato']
+                },
+                {
+                    'name': 'Diminished Blues Run',
+                    'intervals': [0, 3, 4, 6, 7, 9, 10, 12],
+                    'rhythm': 'fast',
+                    'description': 'Blues scale with passing diminished tones',
+                    'techniques': ['hammer-ons', 'pull-offs']
+                },
+            ],
+            'jazz': [
+                {
+                    'name': 'ii-V-I Bebop Lick',
+                    'intervals': [0, 2, 4, 5, 7, 9, 11, 12],
+                    'rhythm': 'bebop',
+                    'description': 'Classic bebop line over ii-V-I with chromatic approach',
+                    'techniques': ['chromatic approach tones', 'eighth note lines']
+                },
+                {
+                    'name': 'Altered Scale Lick',
+                    'intervals': [0, 1, 3, 4, 6, 8, 10, 12],
+                    'rhythm': 'outside',
+                    'description': 'Altered dominant scale for tension (7alt chord)',
+                    'techniques': ['altered tones', 'outside playing']
+                },
+                {
+                    'name': 'Wes Montgomery Octaves',
+                    'intervals': [0, 12, 2, 14, 4, 16, 5, 17],  # Octaves
+                    'rhythm': 'thumb-style',
+                    'description': 'Parallel octaves in the style of Wes Montgomery',
+                    'techniques': ['thumb picking', 'parallel octaves']
+                },
+                {
+                    'name': 'Pat Martino Minor ii-V',
+                    'intervals': [0, 2, 3, 5, 7, 8, 10, 12],
+                    'rhythm': 'modal',
+                    'description': 'Minor ii-V-i using dorian and harmonic minor',
+                    'techniques': ['modal playing', 'position shifting']
+                },
+                {
+                    'name': 'Diminished Arpeggio',
+                    'intervals': [0, 3, 6, 9, 12, 15, 18, 21],
+                    'rhythm': 'symmetrical',
+                    'description': 'Diminished 7th arpeggio - cycles every minor 3rd',
+                    'techniques': ['sweep picking', 'symmetrical fingering']
+                },
+                {
+                    'name': 'Charlie Parker Blues',
+                    'intervals': [0, 2, 4, 5, 7, 5, 4, 2],
+                    'rhythm': 'bebop-swing',
+                    'description': 'Bird blues with chromatic passing tones',
+                    'techniques': ['fast alternate picking', 'swing phrasing']
+                },
+                {
+                    'name': 'Grant Green Soul Jazz',
+                    'intervals': [0, 3, 5, 7, 10, 12],
+                    'rhythm': 'soul-jazz',
+                    'description': 'Bluesy jazz with minor pentatonic',
+                    'techniques': ['slight bends', 'funky rhythm']
+                },
+                {
+                    'name': 'Joe Pass Walking Bass',
+                    'intervals': [0, 4, 7, 11, 12, 16, 19, 23],  # Chord tones walking
+                    'rhythm': 'walking',
+                    'description': 'Walking bassline with chord melody',
+                    'techniques': ['thumb bass', 'chord melody']
+                },
+                {
+                    'name': 'Half-Diminished Lick',
+                    'intervals': [0, 2, 3, 5, 6, 8, 10, 12],
+                    'rhythm': 'locrian',
+                    'description': 'Locrian mode over m7b5 chord',
+                    'techniques': ['voice leading', 'modal approach']
+                },
+                {
+                    'name': 'Lydian Dominant Run',
+                    'intervals': [0, 2, 4, 6, 7, 9, 10, 12],
+                    'rhythm': 'melodic-minor',
+                    'description': 'Lydian dominant (melodic minor 4th mode) over 7#11',
+                    'techniques': ['raised 4th', 'exotic sound']
                 },
             ],
             'progressive_metal': [
