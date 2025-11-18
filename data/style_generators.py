@@ -323,6 +323,219 @@ class RockFusionGenerator:
         return progressions
 
 
+class NeoSoulGenerator:
+    """Generate neo soul progressions (R&B with jazz influences)"""
+
+    @staticmethod
+    def generate_extended_chords(key_root: Note, num_variations: int = 10) -> List[ChordProgression]:
+        """Generate neo soul progressions with extended chords"""
+        progressions = []
+        scale = Scale.major(key_root)
+
+        patterns = [
+            # Imaj9-Vim9-IIm9-V13 (D'Angelo style)
+            [
+                Chord(scale.notes[0], ChordQuality.MAJOR_9),
+                Chord(scale.notes[5], ChordQuality.MINOR_9),
+                Chord(scale.notes[1], ChordQuality.MINOR_9),
+                Chord(scale.notes[4], ChordQuality.DOMINANT_9),
+            ],
+            # IIIm7-VIm9-IIm9-Vmaj7
+            [
+                Chord(scale.notes[2], ChordQuality.MINOR_7),
+                Chord(scale.notes[5], ChordQuality.MINOR_9),
+                Chord(scale.notes[1], ChordQuality.MINOR_9),
+                Chord(scale.notes[4], ChordQuality.MAJOR_7),
+            ],
+            # Imaj7-IV9-IIm7-V9 (Erykah Badu style)
+            [
+                Chord(scale.notes[0], ChordQuality.MAJOR_7),
+                Chord(scale.notes[3], ChordQuality.DOMINANT_9),
+                Chord(scale.notes[1], ChordQuality.MINOR_7),
+                Chord(scale.notes[4], ChordQuality.DOMINANT_9),
+            ],
+        ]
+
+        for pattern in patterns:
+            for _ in range(num_variations // len(patterns)):
+                progressions.append(ChordProgression(
+                    chords=pattern,
+                    scale=scale,
+                    style='neo_soul'
+                ))
+
+        return progressions
+
+
+class MathRockGenerator:
+    """Generate math rock progressions (complex, angular)"""
+
+    @staticmethod
+    def generate_angular_progressions(num_variations: int = 10) -> List[ChordProgression]:
+        """Generate math rock progressions with unusual intervals"""
+        progressions = []
+
+        keys = [Note.from_string(n) for n in ['E', 'F#', 'A', 'B']]
+
+        for _ in range(num_variations):
+            root = random.choice(keys)
+            scale = Scale.major(root)
+
+            # Use unexpected chord movements
+            chords = [
+                Chord(scale.notes[0], ChordQuality.MAJOR),
+                Chord(scale.notes[2], ChordQuality.SUSPENDED_4),  # Unusual
+                Chord(scale.notes[5], ChordQuality.MAJOR),
+                Chord(scale.notes[1], ChordQuality.MINOR),
+                Chord(scale.notes[6], ChordQuality.DIMINISHED),  # Tension
+                Chord(scale.notes[0], ChordQuality.MAJOR),
+            ]
+
+            progressions.append(ChordProgression(
+                chords=chords,
+                scale=scale,
+                style='math_rock'
+            ))
+
+        return progressions
+
+
+class PostRockGenerator:
+    """Generate post rock progressions (atmospheric, building)"""
+
+    @staticmethod
+    def generate_atmospheric(num_variations: int = 10) -> List[ChordProgression]:
+        """Generate atmospheric post rock progressions"""
+        progressions = []
+
+        keys = [Note.from_string(n) for n in ['D', 'E', 'A', 'G']]
+
+        for _ in range(num_variations):
+            root = random.choice(keys)
+            scale = Scale.major(root)
+
+            # Slow, building progressions with pedal tones
+            chords = [
+                Chord(scale.notes[0], ChordQuality.MAJOR),
+                Chord(scale.notes[0], ChordQuality.SUSPENDED_2),  # Add texture
+                Chord(scale.notes[4], ChordQuality.MAJOR),
+                Chord(scale.notes[5], ChordQuality.MINOR),
+                Chord(scale.notes[3], ChordQuality.MAJOR),
+                Chord(scale.notes[0], ChordQuality.MAJOR),  # Return home
+            ]
+
+            progressions.append(ChordProgression(
+                chords=chords,
+                scale=scale,
+                style='post_rock'
+            ))
+
+        return progressions
+
+
+class ShoegazeGenerator:
+    """Generate shoegaze progressions (dreamy, dissonant)"""
+
+    @staticmethod
+    def generate_dreamy(num_variations: int = 10) -> List[ChordProgression]:
+        """Generate dreamy shoegaze progressions"""
+        progressions = []
+
+        keys = [Note.from_string(n) for n in ['E', 'A', 'D', 'C']]
+
+        for _ in range(num_variations):
+            root = random.choice(keys)
+            scale = Scale.major(root)
+
+            # Heavy use of suspended and added chords
+            chords = [
+                Chord(scale.notes[0], ChordQuality.SUSPENDED_4),
+                Chord(scale.notes[5], ChordQuality.MINOR),
+                Chord(scale.notes[3], ChordQuality.MAJOR_7),
+                Chord(scale.notes[1], ChordQuality.SUSPENDED_2),
+                Chord(scale.notes[4], ChordQuality.MAJOR),
+            ]
+
+            progressions.append(ChordProgression(
+                chords=chords,
+                scale=scale,
+                style='shoegaze'
+            ))
+
+        return progressions
+
+
+class MetalcoreGenerator:
+    """Generate metalcore progressions (breakdowns, power chords)"""
+
+    @staticmethod
+    def generate_breakdowns(num_variations: int = 10) -> List[ChordProgression]:
+        """Generate metalcore breakdown progressions"""
+        progressions = []
+
+        # Metalcore often uses drop tunings
+        keys = [Note.from_string(n) for n in ['C', 'D', 'E', 'F']]
+
+        for _ in range(num_variations):
+            root = random.choice(keys)
+            scale = Scale.minor(root)  # Often minor
+
+            # Power chords and chromatic movement
+            chords = [
+                Chord(scale.notes[0], ChordQuality.POWER_CHORD),
+                Chord(scale.notes[1], ChordQuality.POWER_CHORD),
+                Chord(scale.notes[3], ChordQuality.POWER_CHORD),
+                Chord(scale.notes[0], ChordQuality.POWER_CHORD),
+                Chord(scale.notes[6], ChordQuality.DIMINISHED),  # Tension
+            ]
+
+            progressions.append(ChordProgression(
+                chords=chords,
+                scale=scale,
+                style='metalcore'
+            ))
+
+        return progressions
+
+
+class RnBGenerator:
+    """Generate R&B progressions (smooth, extended chords)"""
+
+    @staticmethod
+    def generate_smooth_progressions(key_root: Note, num_variations: int = 10) -> List[ChordProgression]:
+        """Generate smooth R&B progressions"""
+        progressions = []
+        scale = Scale.major(key_root)
+
+        patterns = [
+            # Classic R&B: Imaj7-IVmaj7-IIm7-V7
+            [
+                Chord(scale.notes[0], ChordQuality.MAJOR_7),
+                Chord(scale.notes[3], ChordQuality.MAJOR_7),
+                Chord(scale.notes[1], ChordQuality.MINOR_7),
+                Chord(scale.notes[4], ChordQuality.DOMINANT_7),
+            ],
+            # Gospel-influenced: Imaj7-IIIm7-VIm7-IIm7-V7
+            [
+                Chord(scale.notes[0], ChordQuality.MAJOR_7),
+                Chord(scale.notes[2], ChordQuality.MINOR_7),
+                Chord(scale.notes[5], ChordQuality.MINOR_7),
+                Chord(scale.notes[1], ChordQuality.MINOR_7),
+                Chord(scale.notes[4], ChordQuality.DOMINANT_7),
+            ],
+        ]
+
+        for pattern in patterns:
+            for _ in range(num_variations // len(patterns)):
+                progressions.append(ChordProgression(
+                    chords=pattern,
+                    scale=scale,
+                    style='rnb'
+                ))
+
+        return progressions
+
+
 def generate_style_dataset(style: str, num_samples: int = 100) -> List[ChordProgression]:
     """Generate dataset for a specific style"""
 
@@ -349,6 +562,26 @@ def generate_style_dataset(style: str, num_samples: int = 100) -> List[ChordProg
             progressions.extend(RockFusionGenerator.generate_jazz_rock(key, num_samples // (len(keys) * 2)))
         progressions.extend(RockFusionGenerator.generate_modal_fusion(num_samples // 2))
 
+    elif style == 'neo_soul':
+        for key in keys:
+            progressions.extend(NeoSoulGenerator.generate_extended_chords(key, num_samples // len(keys)))
+
+    elif style == 'math_rock':
+        progressions.extend(MathRockGenerator.generate_angular_progressions(num_samples))
+
+    elif style == 'post_rock':
+        progressions.extend(PostRockGenerator.generate_atmospheric(num_samples))
+
+    elif style == 'shoegaze':
+        progressions.extend(ShoegazeGenerator.generate_dreamy(num_samples))
+
+    elif style == 'metalcore':
+        progressions.extend(MetalcoreGenerator.generate_breakdowns(num_samples))
+
+    elif style == 'rnb':
+        for key in keys:
+            progressions.extend(RnBGenerator.generate_smooth_progressions(key, num_samples // len(keys)))
+
     else:
         raise ValueError(f"Unknown style: {style}")
 
@@ -359,11 +592,25 @@ def main():
     """Generate datasets for all styles"""
     import pickle
 
-    styles = ['jazz', 'blues', 'progressive_metal', 'rock_fusion']
+    # Priority styles first (as requested by user)
+    styles = [
+        'neo_soul',
+        'blues',
+        'progressive_metal',
+        'rock_fusion',
+        'jazz',
+        'math_rock',
+        'post_rock',
+        'shoegaze',
+        'metalcore',
+        'rnb'
+    ]
 
     print(f"{'='*60}")
     print("GENERATING STYLE-SPECIFIC DATASETS")
-    print(f"{'='*60}\n")
+    print(f"{'='*60}")
+    print("\nPriority styles: neo_soul, blues, progressive_metal, rock_fusion")
+    print(f"Total styles: {len(styles)}\n")
 
     for style in styles:
         print(f"Generating {style} dataset...")
