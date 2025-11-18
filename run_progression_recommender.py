@@ -24,8 +24,12 @@ VALID_STYLES = [
     'neo_soul',
     'blues',
     'jazz',
-    'prog_metal',
-    'metalcore'
+    'progressive_metal',
+    'metalcore',
+    'math_rock',
+    'post_rock',
+    'shoegaze',
+    'rnb'
 ]
 
 
@@ -55,7 +59,8 @@ def format_progression_output(progression, index, show_theory=True):
 
     # Scale info
     if progression.scale:
-        print(f"Scale: {progression.scale.root.name} {progression.scale.mode.value}")
+        scale_type_name = progression.scale.scale_type.name.replace('_', ' ').title()
+        print(f"Scale: {progression.scale.root.name} {scale_type_name}")
 
     # Harmonic function
     if hasattr(progression, 'harmonic_function') and progression.harmonic_function:
@@ -79,7 +84,7 @@ Examples:
   %(prog)s --style neo_soul --show-theory --export-midi
   %(prog)s --style blues --num 10 --midi-tempo 90
 
-Available styles: rock_fusion, neo_soul, blues, jazz, prog_metal, metalcore
+Available styles: rock_fusion, neo_soul, blues, jazz, progressive_metal, metalcore, math_rock, post_rock, shoegaze, rnb
         """
     )
 
