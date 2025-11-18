@@ -1854,15 +1854,34 @@ class LickRecommender:
             num_recommendations: Number of licks to recommend
 
         Returns:
-            List of lick recommendations with transposed intervals
+            List of lick recommendations with transposed intervals, sorted by quality
         """
         if style not in self.lick_database:
             return []
 
-        licks = self.lick_database[style]
+        # Sort licks by quality (prioritize advanced licks)
+        def lick_quality_score(lick):
+            score = 0
+            # Prefer licks with chord context (advanced)
+            if 'chord_context' in lick and lick['chord_context']:
+                score += 100
+            # Prefer licks with target notes specified
+            if 'target_notes' in lick and lick['target_notes']:
+                score += 50
+            # Prefer licks with functional harmony
+            if 'functional_harmony' in lick and lick['functional_harmony']:
+                score += 50
+            # Prefer longer, more complex licks
+            score += len(lick['intervals']) * 2
+            # Prefer licks with more unique intervals (complexity)
+            score += len(set(lick['intervals'])) * 3
+            return score
+
+        # Sort licks by quality score (highest first)
+        sorted_licks = sorted(self.lick_database[style], key=lick_quality_score, reverse=True)
         recommendations = []
 
-        for i, lick in enumerate(licks[:num_recommendations]):
+        for i, lick in enumerate(sorted_licks[:num_recommendations]):
             # Transpose intervals to the given key
             transposed = self._transpose_lick(lick['intervals'], key)
 

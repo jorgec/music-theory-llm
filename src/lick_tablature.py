@@ -85,6 +85,9 @@ def intervals_to_guitar_notes(
     """
     Convert interval pattern to guitar notes on the fretboard
 
+    Uses intelligent string selection for playable, musical fingerings.
+    Prioritizes staying in position and on adjacent strings.
+
     Args:
         intervals: Semitone intervals from root
         key: Root note
@@ -107,54 +110,116 @@ def intervals_to_guitar_notes(
     current_string = start_string
     current_fret = start_fret
 
-    for interval in intervals:
+    # Track position range for this lick (stay within 4-5 frets when possible)
+    position_min = start_fret
+    position_max = start_fret + 4
+
+    for i, interval in enumerate(intervals):
         # Calculate target MIDI note
         target_midi = root_midi + interval
 
-        # Find appropriate string and fret
-        # Try to stay on nearby strings for smooth playing
-        found = False
-        for string_offset in range(-1, 3):  # Check nearby strings
+        # Determine interval direction if not first note
+        going_up = False
+        if i > 0:
+            going_up = interval > intervals[i-1]
+
+        # Find best string/fret combination
+        # Priority order:
+        # 1. Same string, within position (most playable)
+        # 2. Adjacent string, within position
+        # 3. Same string, extend position by 1-2 frets
+        # 4. Find any playable option
+
+        best_option = None
+        best_score = -1
+
+        # Check current string and adjacent strings only (±1)
+        for string_offset in [0, -1, 1]:
             test_string = current_string + string_offset
-            if 0 <= test_string <= 5:
-                # Get open string MIDI value
-                open_string_midi = STANDARD_TUNING_MIDI[test_string]
-                fret = target_midi - open_string_midi
 
-                # Check if fret is reachable (within 5 fret span)
-                if 0 <= fret <= 19 and abs(fret - current_fret) <= 5:
-                    guitar_notes.append(GuitarNote(
-                        string=test_string,
-                        fret=fret,
-                        note=key  # Simplified - would create proper Note object
-                    ))
-                    current_string = test_string
-                    current_fret = fret
-                    found = True
-                    break
+            # Skip invalid strings
+            if not (0 <= test_string <= 5):
+                continue
 
-        if not found:
-            # Default fallback - use current or nearby string
-            test_string = min(5, max(0, current_string))
+            # Calculate fret on this string
             open_string_midi = STANDARD_TUNING_MIDI[test_string]
             fret = target_midi - open_string_midi
 
-            # Clamp to reasonable fret range
-            if fret < 0:
-                # Try higher string
-                if test_string < 5:
-                    test_string += 1
-                    open_string_midi = STANDARD_TUNING_MIDI[test_string]
-                    fret = target_midi - open_string_midi
+            # Skip if fret is out of reasonable range
+            if not (0 <= fret <= 19):
+                continue
 
-            fret = max(0, min(19, fret))
+            # Score this option (higher is better)
+            score = 0
+
+            # Prefer same string
+            if string_offset == 0:
+                score += 50
+            # Prefer adjacent string over jumping
+            elif abs(string_offset) == 1:
+                score += 30
+
+            # Prefer staying in current position
+            if position_min <= fret <= position_max:
+                score += 40
+            # Slight extension of position is ok
+            elif position_min - 2 <= fret <= position_max + 2:
+                score += 20
+            # Penalize large position shifts
+            else:
+                score -= abs(fret - current_fret) * 5
+
+            # Prefer small fret changes
+            fret_distance = abs(fret - current_fret)
+            if fret_distance <= 2:
+                score += 25
+            elif fret_distance <= 4:
+                score += 10
+            else:
+                score -= fret_distance * 2
+
+            # For ascending passages, prefer higher strings; for descending, prefer lower
+            if going_up and string_offset > 0:
+                score += 5
+            elif not going_up and string_offset < 0:
+                score += 5
+
+            # Keep best option
+            if score > best_score:
+                best_score = score
+                best_option = (test_string, fret)
+
+        # Use best option found
+        if best_option:
+            test_string, fret = best_option
 
             guitar_notes.append(GuitarNote(
                 string=test_string,
                 fret=fret,
                 note=key
             ))
+
+            # Update position
             current_string = test_string
+            current_fret = fret
+
+            # Adjust position window if needed (move position with the lick)
+            if fret < position_min:
+                position_min = max(0, fret)
+                position_max = position_min + 4
+            elif fret > position_max:
+                position_max = min(19, fret)
+                position_min = max(0, position_max - 4)
+        else:
+            # Fallback: use current string and clamp fret
+            open_string_midi = STANDARD_TUNING_MIDI[current_string]
+            fret = max(0, min(19, target_midi - open_string_midi))
+
+            guitar_notes.append(GuitarNote(
+                string=current_string,
+                fret=fret,
+                note=key
+            ))
             current_fret = fret
 
     return guitar_notes
