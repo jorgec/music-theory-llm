@@ -42,12 +42,19 @@ except ImportError:
 
 
 VALID_STYLES = [
+    # Original styles
     'rock_fusion',
     'neo_soul',
     'blues',
     'jazz',
     'progressive_metal',
-    'metalcore'
+    'metalcore',
+    # New styles - expanded coverage
+    'soul',         # Motown, Stax, Gospel-influenced
+    'funk',         # P-Funk, Tower of Power, Modern funk
+    'pop_rock',     # 80s rock, power ballads, arena rock
+    'pop',          # 90s pop, 2000s, Top 40, EDM-pop
+    'rnb'           # Contemporary R&B, trap-soul
 ]
 
 # Rhythm types with 16th notes as default
