@@ -215,27 +215,28 @@ def generate_lick_tablature_with_timing(lick: Dict, key: Note) -> str:
     accumulated_time = 0
 
     for i, note in enumerate(guitar_notes):
-        # Format fret number (pad single digits, show double digits)
+        # Format fret number - always use consistent width with separator
+        # Use 3 characters per fret: "0--", "5--", "10-", "12-", etc.
         if note.fret < 10:
-            fret_str = str(note.fret) + '-'
+            fret_str = str(note.fret) + '--'
         else:
-            fret_str = str(note.fret)
+            fret_str = str(note.fret) + '-'
 
         # Add note to appropriate string
         for s in range(6):
             if s == note.string:
                 strings_data[s].append(fret_str)
             else:
-                strings_data[s].append('--')
+                strings_data[s].append('---')
 
-        # Add timing marker
+        # Add timing marker (3 chars to match fret spacing)
         accumulated_time += spec['note_duration']
         if accumulated_time >= 1.0:
-            timing_line.append(str(beat_counter % 10) + ' ')
+            timing_line.append(str(beat_counter % 10) + '  ')
             beat_counter += 1
             accumulated_time -= 1.0
         else:
-            timing_line.append('  ')
+            timing_line.append('   ')
 
     # Build output
     output = []
