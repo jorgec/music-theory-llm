@@ -115,9 +115,9 @@ def main():
         print("="*80)
         print("\nAll theory explanation tests completed successfully!")
         print("The system now provides comprehensive music theory context for:")
-        print("  -Lick recommendations")
-        print("  -Chord progression recommendations")
-        print("  -All musical styles")
+        print("  - Lick recommendations")
+        print("  - Chord progression recommendations")
+        print("  - All musical styles")
         print("\n")
 
     except Exception as e:

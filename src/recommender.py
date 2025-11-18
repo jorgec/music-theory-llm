@@ -169,9 +169,10 @@ class ChordProgressionRecommender:
                 score *= np.mean(transition_scores) * 2  # Weight transitions
 
         # Variety score (more unique chords = better)
-        unique_chords = len(set(self._chord_to_key(c) for c in prog.chords))
-        variety_score = unique_chords / len(prog.chords)
-        score *= (0.5 + variety_score * 0.5)
+        if len(prog.chords) > 0:
+            unique_chords = len(set(self._chord_to_key(c) for c in prog.chords))
+            variety_score = unique_chords / len(prog.chords)
+            score *= (0.5 + variety_score * 0.5)
 
         return min(score, 1.0)
 
@@ -1023,7 +1024,8 @@ class LickRecommender:
             # Transpose intervals to the given key
             transposed = self._transpose_lick(lick['intervals'], key)
 
-            score = 1.0 - (i * 0.15)
+            # Calculate score with decay, clamped to [0, 1] range
+            score = max(0.0, min(1.0, 1.0 - (i * 0.15)))
 
             # Generate comprehensive theory explanation for this lick
             theory_explanation = self.theory_explainer.explain_lick(lick, key, style)
