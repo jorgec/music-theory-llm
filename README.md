@@ -112,18 +112,24 @@ python -c "from data.data_loaders import quick_start_dataset; quick_start_datase
 python train.py --task progression --epochs 20
 ```
 
-## 🎸 Blues & Rock Lick Database
+## 🎸 Advanced Guitar Lick Database
 
-**30+ authentic guitar licks from legendary players (1960s-1980s):**
-- **Blues**: BB King, Albert King, Muddy Waters, Stevie Ray Vaughan, T-Bone Walker
-- **Rock**: Jimi Hendrix, Eric Clapton, Jimmy Page, Carlos Santana, David Gilmour, Jeff Beck, Eddie Van Halen, Angus Young, Duane Allman
+**156 sophisticated guitar licks from legendary players spanning multiple decades:**
+- **Blues**: BB King, Albert King, Muddy Waters, Stevie Ray Vaughan, T-Bone Walker, John Mayer, Joe Bonamassa, Eric Johnson, Josh Smith
+- **Rock Fusion**: Guthrie Govan, Greg Howe, Frank Gambale, Allan Holdsworth, Scott Henderson
+- **Neo Soul**: Jack Gardiner, Mateus Asato, Cory Wong, Tom Misch
+- **Jazz**: Pat Metheny, Wes Montgomery, Charlie Christian, Mike Stern
+- **Progressive Metal**: I Built the Sky, Plini, Animals as Leaders, Polyphia
+- **Plus**: 5 additional styles (Soul, Funk, Pop Rock, Pop, R&B)
 
 **Features:**
-- Authentic transcriptions with technique notes
-- Difficulty ratings (1-5)
-- Decade tags (60s, 70s, 80s)
-- Technique tags (bends, vibrato, slides, tapping, etc.)
-- Context information (works over G7, blues, etc.)
+- **51.3% advanced licks** - mastery-focused system
+- Chromatic approaches and extensions (9ths, 11ths, 13ths)
+- Complete harmonic context (chord progressions, functional harmony)
+- Target notes and theory explanations
+- Bebop vocabulary, altered harmony, and fusion techniques
+- Technique tags (bends, vibrato, slides, tapping, sweeps, legato, etc.)
+- Artist-specific cadence patterns
 
 **Usage:**
 ```python
