@@ -57,9 +57,9 @@ def test_lick_explanations():
 
             # Verify theory explanation exists
             if 'Scale' in explanation or 'mode' in explanation or 'interval' in explanation:
-                print(f"\n   ✅ Theory explanation detected")
+                print(f"\n   [OK] Theory explanation detected")
             else:
-                print(f"\n   ⚠️  Warning: Theory explanation may be missing")
+                print(f"\n   [WARNING] Theory explanation may be missing")
 
             print(f"\n   {'-'*76}")
 
@@ -104,24 +104,24 @@ def test_progression_explanations():
 
 def main():
     """Run all tests"""
-    print("\n🎵 TESTING MUSIC THEORY EXPLANATION SYSTEM 🎵\n")
+    print("\nTESTING MUSIC THEORY EXPLANATION SYSTEM\n")
 
     try:
         test_lick_explanations()
         test_progression_explanations()
 
         print("\n\n" + "="*80)
-        print("✅ THEORY EXPLANATION SYSTEM TEST COMPLETE")
+        print("[OK] THEORY EXPLANATION SYSTEM TEST COMPLETE")
         print("="*80)
         print("\nAll theory explanation tests completed successfully!")
         print("The system now provides comprehensive music theory context for:")
-        print("  • Lick recommendations")
-        print("  • Chord progression recommendations")
-        print("  • All musical styles")
+        print("  -Lick recommendations")
+        print("  -Chord progression recommendations")
+        print("  -All musical styles")
         print("\n")
 
     except Exception as e:
-        print(f"\n\n❌ ERROR: {e}")
+        print(f"\n\n[ERROR]: {e}")
         import traceback
         traceback.print_exc()
 

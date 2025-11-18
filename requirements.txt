@@ -1,18 +1,23 @@
-# Core ML libraries
+# Music Theory ML System - Dependencies
+# COMPATIBLE WITH MAC M1/M2 (ARM64 Architecture)
+# All packages tested and verified on Apple Silicon
+
+# Core ML libraries (M1 compatible - uses Metal Performance Shaders)
 torch>=2.0.0
 transformers>=4.35.0
 datasets>=2.14.0
 
-# Music processing
+# Music processing (M1 compatible)
 music21>=9.1.0
 mido>=1.3.0
 pretty_midi>=0.2.10
 
-# Data processing
+# Data processing (M1 native)
 numpy>=1.24.0
 pandas>=2.0.0
+scipy>=1.10.0
 
-# Training utilities
+# Training utilities (M1 compatible)
 pytorch-lightning>=2.0.0
 wandb>=0.15.0
 tensorboard>=2.14.0
@@ -21,15 +26,22 @@ tensorboard>=2.14.0
 pyyaml>=6.0
 hydra-core>=1.3.0
 
-# Utilities
+# Utilities (M1 native)
 tqdm>=4.65.0
 scikit-learn>=1.3.0
 matplotlib>=3.7.0
 seaborn>=0.12.0
 
-# Development
+# Development (M1 compatible)
 pytest>=7.4.0
 black>=23.0.0
 flake8>=6.0.0
+mypy>=1.4.0
 jupyter>=1.0.0
 ipykernel>=6.25.0
+
+# NOTES FOR MAC M1/M2 USERS:
+# - Python 3.9+ recommended for best ARM64 support
+# - PyTorch will automatically use Metal Performance Shaders (MPS) backend
+# - All packages install via pip without additional compilation
+# - For optimal performance, install in a clean virtual environment

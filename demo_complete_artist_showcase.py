@@ -35,7 +35,7 @@ def demo_complete_artist_roster():
     """Show complete artist roster with model specs"""
     print_header("COMPLETE ULTIMATE PRODUCTION ARTIST ROSTER")
 
-    print("🎵 ULTIMATE COMPREHENSIVE TRAINING: 700 EPOCHS PER STYLE\n")
+    print("ULTIMATE COMPREHENSIVE TRAINING: 700 EPOCHS PER STYLE\n")
     print("-" * 80)
 
     artists_by_style = {
@@ -74,7 +74,7 @@ def demo_complete_artist_roster():
     }
 
     for style, artists in artists_by_style.items():
-        print(f"\n📊 {style}")
+        print(f"\n[STYLE] {style}")
         print("-" * 70)
         for artist in artists:
             print(f"  • {artist}")
@@ -94,9 +94,9 @@ def demo_fusion_masters():
     system = MusicRecommendationSystem()
     key = Note.from_string('E')
 
-    print(f"🎸 Rock Fusion Style - Key of {key.name}\n")
+    print(f"Rock Fusion Style - Key of {key.name}\n")
     print("Featuring the absolute masters of fusion guitar:\n")
-    print("✨ NOW WITH COMPREHENSIVE MUSIC THEORY EXPLANATIONS ✨\n")
+    print("*** NOW WITH COMPREHENSIVE MUSIC THEORY EXPLANATIONS ***\n")
 
     licks = system.lick_recommender.recommend_licks(
         style='rock_fusion',
@@ -110,7 +110,7 @@ def demo_fusion_masters():
     gambale_licks = [l for l in licks if 'Gambale' in l.item['name']]
     holdsworth_licks = [l for l in licks if 'Holdsworth' in l.item['name']]
 
-    print("🏆 GUTHRIE GOVAN - Complete Technical Mastery")
+    print("[ARTIST] GUTHRIE GOVAN - Complete Technical Mastery")
     print("-" * 70)
     for i, lick_rec in enumerate(govan_licks[:3], 1):  # Show fewer with detailed explanations
         lick = lick_rec.item
@@ -118,13 +118,13 @@ def demo_fusion_masters():
         print(f"     Score: {lick_rec.score:.3f}")
         if 'techniques' in lick:
             print(f"     Techniques: {', '.join(lick['techniques'])}")
-        print(f"\n     📚 MUSIC THEORY EXPLANATION:")
+        print(f"\n     [THEORY EXPLANATION]:")
         # Split explanation into lines for better formatting
         for line in lick_rec.explanation.split('\n'):
             if line.strip():
                 print(f"     {line}")
 
-    print("\n\n⚡ GREG HOWE - Legato & Tapping Master")
+    print("\n\n[ARTIST] GREG HOWE - Legato & Tapping Master")
     print("-" * 70)
     for i, lick_rec in enumerate(howe_licks[:2], 1):
         lick = lick_rec.item
@@ -132,30 +132,30 @@ def demo_fusion_masters():
         print(f"     Score: {lick_rec.score:.3f}")
         if 'techniques' in lick:
             print(f"     Techniques: {', '.join(lick['techniques'])}")
-        print(f"\n     📚 MUSIC THEORY EXPLANATION:")
+        print(f"\n     [THEORY EXPLANATION]:")
         for line in lick_rec.explanation.split('\n'):
             if line.strip():
                 print(f"     {line}")
 
-    print("\n\n🎼 FRANK GAMBALE - Sweep Picking Pioneer")
+    print("\n\n[ARTIST] FRANK GAMBALE - Sweep Picking Pioneer")
     print("-" * 70)
     for i, lick_rec in enumerate(gambale_licks[:2], 1):
         lick = lick_rec.item
         print(f"\n  {i}. {lick['name']}")
         print(f"     Score: {lick_rec.score:.3f}")
-        print(f"\n     📚 MUSIC THEORY EXPLANATION:")
+        print(f"\n     [THEORY EXPLANATION]:")
         for line in lick_rec.explanation.split('\n'):
             if line.strip():
                 print(f"     {line}")
 
-    print(f"\n\n📊 FUSION MODEL SPECS (ULTIMATE PRODUCTION):")
-    print(f"  • d_model: 1152 (MAXIMUM SIZE)")
-    print(f"  • Layers: 14 (DEEPEST POSSIBLE)")
-    print(f"  • Epochs: 700 (ULTIMATE COMPREHENSIVE TRAINING)")
-    print(f"  • Parameters: ~150M")
-    print(f"  • Warmup: 35 epochs")
-    print(f"  • Learning Rate: 1.5e-5 (optimized for ultra-stable training)")
-    print(f"  • Batch Size: 16 (smallest for maximum gradient quality)")
+    print(f"\n\n[SPECS] FUSION MODEL SPECS (ULTIMATE PRODUCTION):")
+    print(f"  - d_model: 1152 (MAXIMUM SIZE)")
+    print(f"  - Layers: 14 (DEEPEST POSSIBLE)")
+    print(f"  - Epochs: 700 (ULTIMATE COMPREHENSIVE TRAINING)")
+    print(f"  - Parameters: ~150M")
+    print(f"  - Warmup: 35 epochs")
+    print(f"  - Learning Rate: 1.5e-5 (optimized for ultra-stable training)")
+    print(f"  - Batch Size: 16 (smallest for maximum gradient quality)")
 
 
 def demo_progressive_metal_ambient():
@@ -165,9 +165,9 @@ def demo_progressive_metal_ambient():
     system = MusicRecommendationSystem()
     key = Note.from_string('D')
 
-    print(f"🌌 Progressive Metal - Key of {key.name}\n")
+    print(f"Progressive Metal - Key of {key.name}\n")
     print("Ambient, atmospheric tapping and wide interval melodies\n")
-    print("✨ WITH COMPREHENSIVE MUSIC THEORY EXPLANATIONS ✨\n")
+    print("*** WITH COMPREHENSIVE MUSIC THEORY EXPLANATIONS ***\n")
 
     licks = system.lick_recommender.recommend_licks(
         style='progressive_metal',
@@ -185,7 +185,7 @@ def demo_progressive_metal_ambient():
         if 'techniques' in lick:
             print(f"   Techniques: {', '.join(lick['techniques'])}")
         print(f"   Notes: {' - '.join(lick['transposed_notes'][:10])}")
-        print(f"\n   📚 MUSIC THEORY EXPLANATION:")
+        print(f"\n   [THEORY EXPLANATION]:")
         for line in lick_rec.explanation.split('\n'):
             if line.strip():
                 print(f"   {line}")
@@ -199,9 +199,9 @@ def demo_jack_gardiner_neo_soul():
     system = MusicRecommendationSystem()
     key = Note.from_string('F')
 
-    print(f"🎹 Neo Soul Style - Key of {key.name}\n")
+    print(f"Neo Soul Style - Key of {key.name}\n")
     print("Advanced voicings with jazz influence\n")
-    print("✨ WITH COMPREHENSIVE MUSIC THEORY EXPLANATIONS ✨\n")
+    print("*** WITH COMPREHENSIVE MUSIC THEORY EXPLANATIONS ***\n")
 
     licks = system.lick_recommender.recommend_licks(
         style='neo_soul',
@@ -219,7 +219,7 @@ def demo_jack_gardiner_neo_soul():
         if 'techniques' in lick:
             print(f"   Techniques: {', '.join(lick['techniques'])}")
         print(f"   Notes: {' - '.join(lick['transposed_notes'][:10])}")
-        print(f"\n   📚 MUSIC THEORY EXPLANATION:")
+        print(f"\n   [THEORY EXPLANATION]:")
         for line in lick_rec.explanation.split('\n'):
             if line.strip():
                 print(f"   {line}")
@@ -230,7 +230,7 @@ def demo_training_specifications():
     """Show complete training specifications"""
     print_header("ULTIMATE PRODUCTION TRAINING SPECIFICATIONS")
 
-    print("🚀 ULTIMATE COMPREHENSIVE TRAINING - 700 EPOCHS\n")
+    print("[TRAINING] ULTIMATE COMPREHENSIVE TRAINING - 700 EPOCHS\n")
     print("-" * 80)
 
     specs = {
@@ -297,13 +297,13 @@ def demo_training_specifications():
     }
 
     for style, config in specs.items():
-        print(f"\n📊 {style}")
+        print(f"\n[STYLE] {style}")
         print(f"   Model: {config['params']} parameters (d_model={config['d_model']}, layers={config['layers']})")
         print(f"   Training: {config['epochs']} epochs, warmup={config['warmup']} epochs")
         print(f"   Optimization: batch_size={config['batch_size']}, lr={config['lr']}")
         print(f"   Focus: {config['focus']}")
 
-    print(f"\n\n⭐ TOTAL SYSTEM CAPACITY (ULTIMATE PRODUCTION)")
+    print(f"\n\n[CAPACITY] TOTAL SYSTEM CAPACITY (ULTIMATE PRODUCTION)")
     print("-" * 80)
     print(f"  Combined Parameters: ~650M (63% increase from 400M)")
     print(f"  Total Training Time: 4,200 epochs across all styles (2.3x increase)")
@@ -316,10 +316,10 @@ def demo_training_specifications():
 def main():
     """Run all demonstrations"""
     print("\n" + "="*80)
-    print(" 🎸 ULTIMATE MUSIC THEORY ML - COMPLETE ARTIST SHOWCASE 🎸")
+    print(" ULTIMATE MUSIC THEORY ML - COMPLETE ARTIST SHOWCASE")
     print("="*80)
     print("\n700 EPOCHS | 650M+ PARAMETERS | 20+ ARTISTS | 65+ LICKS")
-    print("✨ WITH COMPREHENSIVE MUSIC THEORY EXPLANATIONS ✨")
+    print("*** WITH COMPREHENSIVE MUSIC THEORY EXPLANATIONS ***")
     print("\nUltimate professional-grade training for world-class music generation")
     print("="*80)
 
@@ -331,38 +331,38 @@ def main():
 
     # Final Summary
     print_header("FINAL SUMMARY - ULTIMATE PRODUCTION SYSTEM")
-    print("✅ ARTISTS FEATURED:")
-    print("  • I Built the Sky - Ambient progressive metal")
-    print("  • Jack Gardiner - Neo soul sophistication")
-    print("  • Guthrie Govan - Complete fusion mastery (8 signature licks)")
-    print("  • Plus 17+ more signature artists across all styles")
+    print("[OK]ARTISTS FEATURED:")
+    print("  -I Built the Sky - Ambient progressive metal")
+    print("  -Jack Gardiner - Neo soul sophistication")
+    print("  -Guthrie Govan - Complete fusion mastery (8 signature licks)")
+    print("  -Plus 17+ more signature artists across all styles")
     print()
-    print("✅ TRAINING UPGRADED TO 700 EPOCHS (ULTIMATE):")
-    print("  • 2.3x increase from 300 epoch baseline")
-    print("  • Extended warmup periods (30-35 epochs)")
-    print("  • Ultra-optimized learning rates for maximum stability")
-    print("  • Smallest batch sizes (16-20) for supreme gradient quality")
+    print("[OK]TRAINING UPGRADED TO 700 EPOCHS (ULTIMATE):")
+    print("  -2.3x increase from 300 epoch baseline")
+    print("  -Extended warmup periods (30-35 epochs)")
+    print("  -Ultra-optimized learning rates for maximum stability")
+    print("  -Smallest batch sizes (16-20) for supreme gradient quality")
     print()
-    print("✅ MODEL ENHANCEMENTS (MAXIMUM CAPACITY):")
-    print("  • Rock Fusion: 1152 d_model, 14 layers (~150M params) - ABSOLUTE MAXIMUM")
-    print("  • Neo Soul/Prog Metal/Jazz: 1024 d_model, 12 layers (~100M params each)")
-    print("  • Blues/Metalcore: 768 d_model, 10 layers (~70M params each)")
-    print("  • Total: ~650M parameters across all styles (63% increase)")
+    print("[OK]MODEL ENHANCEMENTS (MAXIMUM CAPACITY):")
+    print("  -Rock Fusion: 1152 d_model, 14 layers (~150M params) - ABSOLUTE MAXIMUM")
+    print("  -Neo Soul/Prog Metal/Jazz: 1024 d_model, 12 layers (~100M params each)")
+    print("  -Blues/Metalcore: 768 d_model, 10 layers (~70M params each)")
+    print("  -Total: ~650M parameters across all styles (63% increase)")
     print()
-    print("✅ MUSIC THEORY EXPLANATION SYSTEM:")
-    print("  • Comprehensive theory explanations for ALL recommendations")
-    print("  • Harmonic analysis (ii-V-I, I-IV-V, functional harmony)")
-    print("  • Voice leading and chord extension analysis")
-    print("  • Modal/scale theory for each style")
-    print("  • Technique theory explanations")
-    print("  • Style-specific theoretical contexts")
+    print("[OK]MUSIC THEORY EXPLANATION SYSTEM:")
+    print("  -Comprehensive theory explanations for ALL recommendations")
+    print("  -Harmonic analysis (ii-V-I, I-IV-V, functional harmony)")
+    print("  -Voice leading and chord extension analysis")
+    print("  -Modal/scale theory for each style")
+    print("  -Technique theory explanations")
+    print("  -Style-specific theoretical contexts")
     print()
-    print("✅ PRODUCTION STATUS:")
-    print("  • Ultimate comprehensive training")
-    print("  • World-class artist modeling")
-    print("  • Professional music theory explanations")
-    print("  • Ready for commercial deployment")
-    print("  • Unprecedented depth of musical knowledge and understanding")
+    print("[OK]PRODUCTION STATUS:")
+    print("  -Ultimate comprehensive training")
+    print("  -World-class artist modeling")
+    print("  -Professional music theory explanations")
+    print("  -Ready for commercial deployment")
+    print("  -Unprecedented depth of musical knowledge and understanding")
     print()
     print("="*80 + "\n")
 
