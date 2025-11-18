@@ -18,41 +18,64 @@ from train_comprehensive import train_style_model
 from src.tokenizer import MusicTheoryTokenizer
 
 
-PRIORITY_STYLES = ['neo_soul', 'blues', 'progressive_metal', 'rock_fusion']
+PRIORITY_STYLES = ['neo_soul', 'blues', 'progressive_metal', 'rock_fusion', 'jazz', 'metalcore']
 
-# Optimized configurations for each priority style
+# Optimized configurations for each priority style with increased epochs and parameters
+# ENHANCED for artist-specific nuances: Eric Johnson, Greg Howe, and all signature artists
 STYLE_CONFIGS = {
     'neo_soul': {
-        'd_model': 384,  # Large model for complex extended chords
-        'num_layers': 6,
-        'epochs': 60,  # More epochs for complex harmony
-        'batch_size': 32,
-        'learning_rate': 8e-5,
-        'description': 'Extended chords, chromatic movement, gospel influences'
+        'd_model': 576,  # Further increased from 512 for Asato/Basilio nuances
+        'num_layers': 9,  # Deeper for complex voicings
+        'epochs': 180,  # Extended training for artist-specific patterns
+        'batch_size': 28,  # Slightly reduced for better gradient updates
+        'learning_rate': 4e-5,  # Fine-tuned LR for stability
+        'warmup_epochs': 8,  # Longer warmup
+        'description': 'Extended chords, chromatic movement, gospel influences (Asato, Basilio)'
     },
     'blues': {
-        'd_model': 256,
-        'num_layers': 4,
-        'epochs': 50,
-        'batch_size': 32,
-        'learning_rate': 1e-4,
-        'description': '12-bar blues, pentatonic patterns, dominant 7ths'
+        'd_model': 448,  # Increased from 384 for Eric Johnson, Mayer, Smith nuances
+        'num_layers': 7,  # Deeper for capturing subtle techniques
+        'epochs': 160,  # More epochs for Eric Johnson\'s intervallic complexity
+        'batch_size': 28,
+        'learning_rate': 6e-5,  # Adjusted for larger model
+        'warmup_epochs': 7,
+        'description': 'Blues mastery: Mayer, Smith, Eric Johnson (open voicings, add9), Bonamassa'
     },
     'progressive_metal': {
-        'd_model': 384,
-        'num_layers': 6,
-        'epochs': 60,
-        'batch_size': 32,
-        'learning_rate': 8e-5,
-        'description': 'Modal progressions, polymodal harmony, technical riffs'
+        'd_model': 576,  # Increased from 512
+        'num_layers': 9,  # Deeper for Intervals/Plini technical complexity
+        'epochs': 180,  # Extended for polyrhythmic patterns
+        'batch_size': 28,
+        'learning_rate': 4e-5,
+        'warmup_epochs': 8,
+        'description': 'Modal progressions, polymodal harmony, technical riffs (Intervals, Plini)'
     },
     'rock_fusion': {
-        'd_model': 384,
-        'num_layers': 6,
-        'epochs': 60,
-        'batch_size': 32,
-        'learning_rate': 8e-5,
-        'description': 'Jazz-rock hybrids, complex harmony, modal fusion'
+        'd_model': 640,  # HIGHEST priority: Greg Howe, Gambale, Holdsworth
+        'num_layers': 10,  # Maximum depth for fusion complexity
+        'epochs': 200,  # EXTENDED: Greg Howe emphasis with high priority
+        'batch_size': 24,  # Smaller batch for better learning
+        'learning_rate': 3e-5,  # Lower LR for stable convergence
+        'warmup_epochs': 10,  # Extended warmup for large model
+        'description': 'HIGH PRIORITY: Greg Howe (legato, tapping), Gambale (sweep), Holdsworth (fusion)'
+    },
+    'jazz': {
+        'd_model': 576,  # Increased from 512
+        'num_layers': 9,  # Deeper for jazz sophistication
+        'epochs': 180,  # Extended for Corea, Metheny, Holdsworth complexity
+        'batch_size': 28,
+        'learning_rate': 4e-5,
+        'warmup_epochs': 8,
+        'description': 'Advanced jazz harmony, bebop, altered scales (Corea, Metheny, Holdsworth)'
+    },
+    'metalcore': {
+        'd_model': 448,  # Increased from 384
+        'num_layers': 7,  # Deeper for modern metalcore
+        'epochs': 160,  # Extended for Architects, Polaris, Invent Animate
+        'batch_size': 28,
+        'learning_rate': 6e-5,
+        'warmup_epochs': 7,
+        'description': 'Modern metalcore with djent, breakdowns, atmosphere (Architects, Polaris, Invent Animate)'
     }
 }
 

@@ -353,13 +353,57 @@ class LickRecommender:
                     'name': 'D\'Angelo Lick',
                     'intervals': [0, 2, 4, 5, 7, 5, 4, 2],  # Scale degrees
                     'rhythm': 'syncopated',
-                    'description': 'Chromatic approach to chord tones with syncopation'
+                    'description': 'Chromatic approach to chord tones with syncopation',
+                    'techniques': ['syncopation', 'rhythmic displacement']
                 },
                 {
                     'name': 'Neo Soul Run',
                     'intervals': [0, 2, 3, 5, 7, 9, 11, 12],
                     'rhythm': 'flowing',
-                    'description': 'Extended chord arpeggio with 9th and 11th'
+                    'description': 'Extended chord arpeggio with 9th and 11th',
+                    'techniques': ['extended chords', 'smooth legato']
+                },
+                {
+                    'name': 'Mateus Asato Chord Melody',
+                    'intervals': [0, 4, 7, 11, 14, 11, 7, 4],  # maj9 arpeggio
+                    'rhythm': 'ambient-textural',
+                    'description': 'Asato\'s signature ambient chord melody with maj9 voicings',
+                    'techniques': ['delay/reverb usage', 'volume swells', 'chord melody', 'maj9 voicings']
+                },
+                {
+                    'name': 'Mateus Asato Pentatonic Extensions',
+                    'intervals': [0, 2, 4, 7, 9, 11, 14, 16],
+                    'rhythm': 'lyrical-spacious',
+                    'description': 'Asato\'s extended pentatonic approach with added extensions',
+                    'techniques': ['pentatonic extensions', 'tasteful bends', 'space/rests']
+                },
+                {
+                    'name': 'Mateus Asato Dorian Vamp',
+                    'intervals': [0, 2, 3, 5, 7, 10, 12, 14],
+                    'rhythm': 'dorian-groove',
+                    'description': 'Dorian mode phrase with characteristic Asato phrasing',
+                    'techniques': ['dorian mode', 'rhythmic variety', 'clean tone']
+                },
+                {
+                    'name': 'Lari Basilio Fusion Run',
+                    'intervals': [0, 2, 4, 6, 7, 9, 11, 13, 14],
+                    'rhythm': 'technical-fluid',
+                    'description': 'Basilio\'s fluid technical runs combining jazz and soul',
+                    'techniques': ['economy picking', 'string skipping', 'lydian mode']
+                },
+                {
+                    'name': 'Lari Basilio Chord Stabs',
+                    'intervals': [0, 4, 7, 11, 14, 18, 21],  # Extended voicings
+                    'rhythm': 'rhythmic-percussive',
+                    'description': 'Basilio\'s percussive chord stab approach with extensions',
+                    'techniques': ['muted strumming', 'chord stabs', 'rhythmic precision']
+                },
+                {
+                    'name': 'Lari Basilio Hybrid Picking Line',
+                    'intervals': [0, 3, 5, 7, 10, 12, 15, 17],
+                    'rhythm': 'hybrid-picking',
+                    'description': 'Basilio\'s signature hybrid picking melodic lines',
+                    'techniques': ['hybrid picking', 'dynamic control', 'articulation']
                 },
             ],
             'blues': [
@@ -433,6 +477,90 @@ class LickRecommender:
                     'description': 'Blues scale with passing diminished tones',
                     'techniques': ['hammer-ons', 'pull-offs']
                 },
+                {
+                    'name': 'John Mayer Cascading Lick',
+                    'intervals': [12, 10, 8, 7, 5, 3, 0, -2],
+                    'rhythm': 'triplet-cascade',
+                    'description': 'Signature Mayer cascading triplet run down the neck',
+                    'techniques': ['triplet phrasing', 'position shifts', 'legato pull-offs']
+                },
+                {
+                    'name': 'John Mayer Hendrix-Blues Hybrid',
+                    'intervals': [0, 3, 5, 7, 8, 7, 5, 3],
+                    'rhythm': 'soulful',
+                    'description': 'Mayer-style blues with Hendrix influence, #5 interval',
+                    'techniques': ['controlled feedback', 'thumb fretting', 'string bending']
+                },
+                {
+                    'name': 'John Mayer Chord Melody Blues',
+                    'intervals': [0, 7, 10, 14, 12, 10, 7, 5],  # Mixing chord tones with melody
+                    'rhythm': 'rhythmic-stabs',
+                    'description': 'Mayer signature mix of rhythm and lead in one phrase',
+                    'techniques': ['hybrid picking', 'chord stabs', 'string damping']
+                },
+                {
+                    'name': 'Josh Smith String Bending Run',
+                    'intervals': [0, 3, 5, 5, 7, 8, 10, 10],  # Bend notes indicated by repeated values
+                    'rhythm': 'smooth-sustained',
+                    'description': 'Josh Smith signature controlled bends with perfect pitch',
+                    'techniques': ['whole step bends', 'pre-bends', 'bend-and-release', 'sustain']
+                },
+                {
+                    'name': 'Josh Smith Blues-Fusion Phrase',
+                    'intervals': [0, 2, 3, 5, 7, 9, 10, 12],
+                    'rhythm': 'jazz-blues-hybrid',
+                    'description': 'Smith\'s blend of blues pentatonic with jazz chromaticism',
+                    'techniques': ['finger vibrato', 'chromatic approach', 'clean articulation']
+                },
+                {
+                    'name': 'Josh Smith Pentatonic Pivot',
+                    'intervals': [0, 3, 5, 7, 10, 12, 10, 7, 5, 3],
+                    'rhythm': 'pivoting',
+                    'description': 'Pivoting around root note with pentatonic extensions',
+                    'techniques': ['pivot note technique', 'dynamic control', 'fingerstyle blues']
+                },
+                {
+                    'name': 'Eric Johnson Violin-Tone Bend',
+                    'intervals': [0, 3, 5, 7, 8, 10, 12, 15],
+                    'rhythm': 'lyrical-vocal',
+                    'description': 'Eric Johnson signature violin-like sustained bends and tones',
+                    'techniques': ['controlled bends', 'sustained notes', 'vocal-like phrasing', 'clean tone']
+                },
+                {
+                    'name': 'Eric Johnson Pentatonic Cascades',
+                    'intervals': [12, 10, 8, 7, 5, 3, 2, 0],
+                    'rhythm': 'cascading-fluid',
+                    'description': 'Johnson\'s cascading pentatonic runs down the neck',
+                    'techniques': ['fluid legato', 'cascading runs', 'position shifts']
+                },
+                {
+                    'name': 'Eric Johnson Chord-Melody Hybrid',
+                    'intervals': [0, 4, 7, 10, 12, 16, 19, 22],
+                    'rhythm': 'hybrid-melodic',
+                    'description': 'Johnson\'s blend of chord tones and melodic lines',
+                    'techniques': ['hybrid picking', 'chord tones', 'smooth transitions']
+                },
+                {
+                    'name': 'Joe Bonamassa Power Blues Lick',
+                    'intervals': [0, 3, 5, 7, 8, 10, 12, 15],
+                    'rhythm': 'powerful-aggressive',
+                    'description': 'Bonamassa\'s powerful blues-rock phrasing with authority',
+                    'techniques': ['power bends', 'aggressive vibrato', 'high gain tone']
+                },
+                {
+                    'name': 'Joe Bonamassa British Blues',
+                    'intervals': [0, 3, 5, 6, 7, 10, 12, 15],
+                    'rhythm': 'british-blues-rock',
+                    'description': 'Bonamassa\'s British blues-rock influenced phrases (Clapton/Beck style)',
+                    'techniques': ['woman tone', 'microtonal bends', 'sustain']
+                },
+                {
+                    'name': 'Joe Bonamassa String Bending Masterclass',
+                    'intervals': [0, 3, 5, 5, 7, 8, 8, 10, 12],  # Repeated = bends
+                    'rhythm': 'expressive-dynamic',
+                    'description': 'Bonamassa\'s masterful string bending with perfect intonation',
+                    'techniques': ['precise bends', 'vibrato control', 'dynamics', 'phrasing']
+                },
             ],
             'jazz': [
                 {
@@ -505,25 +633,126 @@ class LickRecommender:
                     'description': 'Lydian dominant (melodic minor 4th mode) over 7#11',
                     'techniques': ['raised 4th', 'exotic sound']
                 },
+                {
+                    'name': 'Chick Corea Spanish Phrygian',
+                    'intervals': [0, 1, 4, 5, 7, 8, 11, 12],
+                    'rhythm': 'latin-jazz',
+                    'description': 'Corea\'s Spanish-influenced Phrygian dominant phrase',
+                    'techniques': ['staccato articulation', 'rhythmic displacement', 'latin feel']
+                },
+                {
+                    'name': 'Chick Corea Crystal Silence',
+                    'intervals': [0, 4, 7, 11, 14, 17, 21, 24],
+                    'rhythm': 'ethereal',
+                    'description': 'Corea\'s signature cascading arpeggios with extensions',
+                    'techniques': ['arpeggio voicings', 'pedal point', 'cascading runs']
+                },
+                {
+                    'name': 'Pat Metheny Wide Interval Jump',
+                    'intervals': [0, 7, 12, 19, 16, 12, 7, 0],
+                    'rhythm': 'melodic-lyrical',
+                    'description': 'Metheny signature wide interval jumps with perfect voice leading',
+                    'techniques': ['wide intervals', 'legato phrasing', 'sustain']
+                },
+                {
+                    'name': 'Pat Metheny Bright Size Life',
+                    'intervals': [0, 2, 4, 7, 9, 11, 14, 16],
+                    'rhythm': 'bright-optimistic',
+                    'description': 'Metheny\'s bright, optimistic major-based melodic lines',
+                    'techniques': ['string-crossing', 'bright tone', 'clean articulation']
+                },
+                {
+                    'name': 'Pat Metheny Modal Vamp',
+                    'intervals': [0, 2, 5, 7, 10, 12, 10, 7, 5, 2],
+                    'rhythm': 'modal-repetitive',
+                    'description': 'Metheny\'s hypnotic modal vamps with subtle variations',
+                    'techniques': ['modal playing', 'subtle dynamics', 'repetitive motifs']
+                },
+                {
+                    'name': 'Allan Holdsworth Legato Run',
+                    'intervals': [0, 4, 7, 11, 15, 18, 22, 25],
+                    'rhythm': 'fluid-legato',
+                    'description': 'Holdsworth\'s fluid legato lines across wide intervals',
+                    'techniques': ['advanced legato', 'wide stretches', 'fluid phrasing']
+                },
+                {
+                    'name': 'Allan Holdsworth SUS4 Voicing',
+                    'intervals': [0, 5, 7, 12, 17, 19, 24],
+                    'rhythm': 'suspended-ambiguous',
+                    'description': 'Holdsworth\'s characteristic suspended and ambiguous harmonies',
+                    'techniques': ['sus4 voicings', 'harmonic ambiguity', 'long phrases']
+                },
+                {
+                    'name': 'Allan Holdsworth Chromatic Cascade',
+                    'intervals': [0, 1, 2, 4, 5, 7, 8, 10, 11, 12],
+                    'rhythm': 'chromatic-flowing',
+                    'description': 'Holdsworth\'s signature chromatic approach with superimposed harmony',
+                    'techniques': ['chromatic sequences', 'legato technique', 'advanced theory']
+                },
             ],
             'progressive_metal': [
                 {
                     'name': 'Lydian Shred',
                     'intervals': [0, 2, 4, 6, 7, 9, 11, 12],
                     'rhythm': 'fast',
-                    'description': 'Lydian mode run with raised 4th'
+                    'description': 'Lydian mode run with raised 4th',
+                    'techniques': ['alternate picking', 'lydian mode']
                 },
                 {
                     'name': 'Phrygian Riff',
                     'intervals': [0, 1, 3, 5, 7, 8, 10, 12],
                     'rhythm': 'heavy',
-                    'description': 'Phrygian dominant sound'
+                    'description': 'Phrygian dominant sound',
+                    'techniques': ['palm muting', 'phrygian mode']
                 },
                 {
                     'name': 'Sweep Arpeggio',
                     'intervals': [0, 4, 7, 12, 16, 19],
                     'rhythm': 'sweeping',
-                    'description': 'Extended arpeggio for sweep picking'
+                    'description': 'Extended arpeggio for sweep picking',
+                    'techniques': ['sweep picking', 'economy motion']
+                },
+                {
+                    'name': 'Intervals Polymetric Riff',
+                    'intervals': [0, 2, 5, 7, 10, 12, 14, 17],
+                    'rhythm': 'polymetric-djent',
+                    'description': 'Intervals signature polymetric and polyrhythmic riffing',
+                    'techniques': ['polymetric phrasing', 'tight palm muting', '7-string techniques']
+                },
+                {
+                    'name': 'Intervals Harmonic Minor Shred',
+                    'intervals': [0, 2, 3, 5, 7, 8, 11, 12],
+                    'rhythm': 'neoclassical-shred',
+                    'description': 'Intervals harmonic minor/Phrygian dominant runs',
+                    'techniques': ['harmonic minor', 'string skipping', 'precision picking']
+                },
+                {
+                    'name': 'Intervals Melodic Lead',
+                    'intervals': [0, 4, 7, 11, 14, 16, 19, 21],
+                    'rhythm': 'melodic-soaring',
+                    'description': 'Intervals melodic lead lines with wide intervals',
+                    'techniques': ['legato', 'wide intervals', 'sustain']
+                },
+                {
+                    'name': 'Plini Hybrid Shred',
+                    'intervals': [0, 2, 4, 6, 7, 9, 11, 14, 16],
+                    'rhythm': 'technical-melodic',
+                    'description': 'Plini\'s signature blend of technical playing with melody',
+                    'techniques': ['hybrid picking', 'tapping', 'melodic phrasing']
+                },
+                {
+                    'name': 'Plini Chord Voicing Lick',
+                    'intervals': [0, 4, 7, 11, 14, 18, 21, 24],
+                    'rhythm': 'chord-based-lead',
+                    'description': 'Plini\'s sophisticated chord voicings in lead playing',
+                    'techniques': ['chord voicings', 'clean articulation', 'jazz influence']
+                },
+                {
+                    'name': 'Plini Cascading Tapping',
+                    'intervals': [0, 5, 9, 12, 17, 21, 24, 28],
+                    'rhythm': 'cascading-tap',
+                    'description': 'Plini\'s signature cascading tapped arpeggios',
+                    'techniques': ['two-hand tapping', 'cascading patterns', 'clean tone']
                 },
             ],
             'rock_fusion': [
@@ -531,13 +760,136 @@ class LickRecommender:
                     'name': 'Jazz-Rock Fusion Lick',
                     'intervals': [0, 2, 4, 6, 7, 6, 4, 2],
                     'rhythm': 'fusion',
-                    'description': 'Mixolydian with chromatic approach'
+                    'description': 'Mixolydian with chromatic approach',
+                    'techniques': ['mixolydian mode', 'chromatic approach']
                 },
                 {
                     'name': 'Allan Holdsworth Style',
                     'intervals': [0, 3, 5, 7, 10, 12, 15],
                     'rhythm': 'legato',
-                    'description': 'Wide interval jumps with legato'
+                    'description': 'Wide interval jumps with legato',
+                    'techniques': ['wide intervals', 'legato']
+                },
+                {
+                    'name': 'Frank Gambale Sweep Economy',
+                    'intervals': [0, 4, 7, 12, 16, 19, 24, 28],
+                    'rhythm': 'sweep-economy',
+                    'description': 'Gambale\'s signature sweep/economy picking technique across strings',
+                    'techniques': ['sweep picking', 'economy picking', 'string crossing']
+                },
+                {
+                    'name': 'Frank Gambale Superimposed Arpeggios',
+                    'intervals': [0, 4, 8, 12, 16, 20, 24],  # Augmented arpeggio
+                    'rhythm': 'superimposed',
+                    'description': 'Gambale\'s superimposed arpeggio approach over chords',
+                    'techniques': ['arpeggio superimposition', 'augmented arpeggios', 'advanced harmony']
+                },
+                {
+                    'name': 'Frank Gambale Pentatonic Substitution',
+                    'intervals': [0, 2, 4, 7, 9, 12, 14, 16],
+                    'rhythm': 'pentatonic-advanced',
+                    'description': 'Gambale\'s advanced pentatonic substitutions over complex changes',
+                    'techniques': ['pentatonic substitutions', 'mode mixture', 'theory application']
+                },
+                {
+                    'name': 'Greg Howe Legato Cascade',
+                    'intervals': [0, 2, 4, 5, 7, 9, 11, 12, 14, 16],
+                    'rhythm': 'fluid-legato',
+                    'description': 'Greg Howe\'s signature fluid legato cascades with seamless phrasing',
+                    'techniques': ['advanced legato', 'hammer-ons/pull-offs', 'smooth articulation', 'liquid phrasing']
+                },
+                {
+                    'name': 'Greg Howe Two-Hand Tapping',
+                    'intervals': [0, 5, 9, 12, 17, 21, 24, 29],
+                    'rhythm': 'two-hand-tap',
+                    'description': 'Howe\'s intricate two-hand tapping with wide intervallic leaps',
+                    'techniques': ['two-hand tapping', 'wide intervals', 'right-hand tapping', 'symmetrical patterns']
+                },
+                {
+                    'name': 'Greg Howe Chromatic Fusion',
+                    'intervals': [0, 1, 2, 4, 5, 6, 7, 9, 10, 11, 12],
+                    'rhythm': 'chromatic-technical',
+                    'description': 'Howe\'s chromatic approach blending rock intensity with jazz sophistication',
+                    'techniques': ['chromatic sequences', 'outside playing', 'tension/resolution']
+                },
+                {
+                    'name': 'Greg Howe Sweep-Tap Hybrid',
+                    'intervals': [0, 4, 7, 12, 16, 19, 24, 28, 31],
+                    'rhythm': 'sweep-tap-hybrid',
+                    'description': 'Howe\'s combination of sweep picking with tapped extensions',
+                    'techniques': ['sweep picking', 'tapping', 'hybrid technique', 'arpeggio extensions']
+                },
+                {
+                    'name': 'Greg Howe Modal Superimposition',
+                    'intervals': [0, 2, 4, 6, 7, 9, 11, 13, 14],
+                    'rhythm': 'modal-advanced',
+                    'description': 'Howe\'s modal superimposition over chord changes',
+                    'techniques': ['lydian mode', 'modal interchange', 'superimposition', 'harmonic sophistication']
+                },
+                {
+                    'name': 'Greg Howe Intervallic Sequences',
+                    'intervals': [0, 7, 2, 9, 4, 11, 7, 14],
+                    'rhythm': 'intervallic-sequence',
+                    'description': 'Howe\'s signature intervallic sequences creating wide melodic movement',
+                    'techniques': ['interval skipping', 'sequence patterns', 'melodic development']
+                },
+                {
+                    'name': 'Greg Howe Rock-Jazz Phrase',
+                    'intervals': [0, 3, 5, 7, 10, 12, 15, 17],
+                    'rhythm': 'rock-jazz-fusion',
+                    'description': 'Howe\'s perfect blend of rock aggression with jazz vocabulary',
+                    'techniques': ['blues-jazz fusion', 'aggressive vibrato', 'jazz phrasing', 'rock attitude']
+                },
+            ],
+            'metalcore': [
+                {
+                    'name': 'Architects Breakdown Riff',
+                    'intervals': [0, 0, 5, 5, 7, 7, 10, 10],  # Open string chugs
+                    'rhythm': 'breakdown-syncopated',
+                    'description': 'Architects signature breakdown with syncopated palm-muted chugs',
+                    'techniques': ['palm muting', 'syncopation', 'drop tuning', 'breakdown']
+                },
+                {
+                    'name': 'Architects Melodic Lead',
+                    'intervals': [0, 3, 5, 8, 10, 12, 15, 17],
+                    'rhythm': 'melodic-soaring',
+                    'description': 'Architects melodic lead lines in minor key',
+                    'techniques': ['melodic minor', 'sustain', 'emotional phrasing']
+                },
+                {
+                    'name': 'Polaris Progressive Riff',
+                    'intervals': [0, 2, 3, 5, 7, 10, 12, 14],
+                    'rhythm': 'progressive-metalcore',
+                    'description': 'Polaris blend of prog elements with metalcore aggression',
+                    'techniques': ['odd-time signatures', 'complex rhythms', 'technical precision']
+                },
+                {
+                    'name': 'Polaris Ambient Clean Section',
+                    'intervals': [0, 4, 7, 11, 14, 17, 21],
+                    'rhythm': 'ambient-clean',
+                    'description': 'Polaris signature ambient clean passages with reverb',
+                    'techniques': ['clean tone', 'reverb/delay', 'arpeggios', 'dynamics']
+                },
+                {
+                    'name': 'Invent Animate Dissonant Chord',
+                    'intervals': [0, 1, 5, 8, 11, 13, 17],  # Dissonant intervals
+                    'rhythm': 'dissonant-atmospheric',
+                    'description': 'Invent Animate signature dissonant chord voicings',
+                    'techniques': ['dissonant harmony', 'suspended chords', 'atmospheric']
+                },
+                {
+                    'name': 'Invent Animate Tapping Sequence',
+                    'intervals': [0, 5, 8, 12, 17, 20, 24, 29],
+                    'rhythm': 'ambient-tap',
+                    'description': 'Invent Animate clean tapped sequences over atmospheric backing',
+                    'techniques': ['two-hand tapping', 'clean tone', 'reverb usage']
+                },
+                {
+                    'name': 'Modern Metalcore Djent Riff',
+                    'intervals': [0, 0, 2, 2, 5, 5, 7, 7],
+                    'rhythm': 'djent-polyrhythmic',
+                    'description': 'Modern metalcore djent-style palm-muted syncopation',
+                    'techniques': ['djent', 'polyrhythm', 'tight palm muting', '8-string guitar']
                 },
             ],
         }
