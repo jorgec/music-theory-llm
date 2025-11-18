@@ -40,10 +40,12 @@ class ChordProgression:
         chords: List of chords in the progression
         scale: The scale/key of the progression
         roman_numerals: Optional roman numeral analysis
+        style: Optional style/genre classification
     """
     chords: List[Chord]
     scale: Optional[Scale] = None
     roman_numerals: Optional[List[str]] = None
+    style: Optional[str] = None
 
     def __post_init__(self):
         if self.scale and not self.roman_numerals:
