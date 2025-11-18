@@ -408,6 +408,270 @@ class MidiReader:
         except Exception as e:
             return {'error': str(e)}
 
+    def analyze_midi_with_theory(self, midi_path: str) -> Dict:
+        """
+        Comprehensive MIDI analysis with music theory explanations
+
+        Args:
+            midi_path: Path to MIDI file
+
+        Returns:
+            Dictionary with detailed analysis and theory explanations
+        """
+        from .theory_explainer import MusicTheoryExplainer
+        from collections import Counter
+
+        # Read basic MIDI info
+        basic_analysis = self.read_midi_file(midi_path)
+
+        # Initialize theory explainer
+        explainer = MusicTheoryExplainer()
+
+        # Comprehensive analysis
+        analysis = {
+            'filename': basic_analysis['filename'],
+            'tempo': basic_analysis.get('tempo', 120),
+            'ticks_per_beat': basic_analysis.get('ticks_per_beat', 480),
+            'total_time': basic_analysis.get('total_time', 0),
+            'tracks': basic_analysis.get('tracks', []),
+            'track_count': len(basic_analysis.get('tracks', [])),
+        }
+
+        # Analyze all notes across all tracks
+        all_notes = []
+        all_pitches = []
+
+        for track in analysis['tracks']:
+            for note in track.get('notes', []):
+                all_notes.append(note)
+                all_pitches.append(note['midi_note'])
+
+        analysis['total_notes'] = len(all_notes)
+
+        # Pitch analysis
+        if all_pitches:
+            pitch_counter = Counter(all_pitches)
+            most_common_pitches = pitch_counter.most_common(5)
+
+            analysis['pitch_range'] = {
+                'lowest': min(all_pitches),
+                'highest': max(all_pitches),
+                'span': max(all_pitches) - min(all_pitches)
+            }
+
+            analysis['most_common_pitches'] = [
+                {'pitch': pitch, 'count': count, 'note_name': self._midi_to_note_name(pitch)}
+                for pitch, count in most_common_pitches
+            ]
+
+            # Detect key from pitch distribution
+            detected_key = self._detect_key_from_pitches(all_pitches)
+            analysis['detected_key'] = detected_key
+        else:
+            analysis['pitch_range'] = None
+            analysis['most_common_pitches'] = []
+            analysis['detected_key'] = None
+
+        # Extract intervals for harmonic analysis
+        if len(all_pitches) > 1:
+            intervals = []
+            for i in range(1, len(all_pitches)):
+                intervals.append(all_pitches[i] - all_pitches[i-1])
+
+            interval_counter = Counter(intervals)
+            analysis['common_intervals'] = [
+                {'semitones': interval, 'count': count}
+                for interval, count in interval_counter.most_common(5)
+            ]
+        else:
+            analysis['common_intervals'] = []
+
+        # Generate theory explanation
+        analysis['theory_explanation'] = self._generate_midi_theory_explanation(analysis)
+
+        return analysis
+
+    def _detect_key_from_pitches(self, pitches: List[int]) -> Dict:
+        """Detect key from MIDI pitches using pitch class distribution"""
+        if not pitches:
+            return {'key': None, 'mode': None, 'confidence': 0.0}
+
+        # Count pitch classes (0-11)
+        pitch_classes = [p % 12 for p in pitches]
+        pc_counter = Counter(pitch_classes)
+
+        # Normalize to get distribution
+        total = sum(pc_counter.values())
+        pc_distribution = [pc_counter.get(i, 0) / total for i in range(12)]
+
+        # Major and minor profiles (Krumhansl-Schmuckler)
+        major_profile = [6.35, 2.23, 3.48, 2.33, 4.38, 4.09, 2.52, 5.19, 2.39, 3.66, 2.29, 2.88]
+        minor_profile = [6.33, 2.68, 3.52, 5.38, 2.60, 3.53, 2.54, 4.75, 3.98, 2.69, 3.34, 3.17]
+
+        # Normalize profiles
+        major_sum = sum(major_profile)
+        minor_sum = sum(minor_profile)
+        major_profile = [x / major_sum for x in major_profile]
+        minor_profile = [x / minor_sum for x in minor_profile]
+
+        best_correlation = -1
+        best_key = None
+        best_mode = None
+
+        # Try all keys and modes
+        for tonic in range(12):
+            # Rotate distribution to test this tonic
+            rotated_dist = pc_distribution[tonic:] + pc_distribution[:tonic]
+
+            # Test major
+            major_corr = self._correlation(rotated_dist, major_profile)
+            if major_corr > best_correlation:
+                best_correlation = major_corr
+                best_key = self.note_to_name[tonic]
+                best_mode = 'major'
+
+            # Test minor
+            minor_corr = self._correlation(rotated_dist, minor_profile)
+            if minor_corr > best_correlation:
+                best_correlation = minor_corr
+                best_key = self.note_to_name[tonic]
+                best_mode = 'minor'
+
+        return {
+            'key': best_key,
+            'mode': best_mode,
+            'confidence': best_correlation
+        }
+
+    def _correlation(self, x: List[float], y: List[float]) -> float:
+        """Calculate correlation between two lists"""
+        if len(x) != len(y):
+            return 0.0
+
+        n = len(x)
+        mean_x = sum(x) / n
+        mean_y = sum(y) / n
+
+        numerator = sum((x[i] - mean_x) * (y[i] - mean_y) for i in range(n))
+
+        var_x = sum((x[i] - mean_x) ** 2 for i in range(n))
+        var_y = sum((y[i] - mean_y) ** 2 for i in range(n))
+
+        if var_x == 0 or var_y == 0:
+            return 0.0
+
+        denominator = (var_x * var_y) ** 0.5
+
+        return numerator / denominator if denominator > 0 else 0.0
+
+    def _generate_midi_theory_explanation(self, analysis: Dict) -> str:
+        """Generate comprehensive theory explanation for MIDI file"""
+        parts = []
+
+        parts.append(f"MUSIC THEORY ANALYSIS: {analysis['filename']}")
+        parts.append("=" * 70)
+        parts.append("")
+
+        # Basic info
+        parts.append("BASIC INFORMATION:")
+        parts.append(f"  Duration: {analysis['total_time']:.2f} seconds ({analysis['total_time']/60:.1f} minutes)")
+        parts.append(f"  Tempo: {analysis['tempo']:.1f} BPM")
+        parts.append(f"  Tracks: {analysis['track_count']}")
+        parts.append(f"  Total notes: {analysis['total_notes']}")
+        parts.append("")
+
+        # Track breakdown
+        if analysis['tracks']:
+            parts.append("TRACKS:")
+            for track in analysis['tracks']:
+                parts.append(f"  Track {track['track_number']}: {track['track_name']}")
+                parts.append(f"    Notes: {len(track.get('notes', []))}")
+            parts.append("")
+
+        # Key analysis
+        detected_key = analysis.get('detected_key')
+        if detected_key and detected_key['key']:
+            parts.append("KEY AND TONALITY:")
+            parts.append(f"  Detected key: {detected_key['key']} {detected_key['mode']}")
+            parts.append(f"  Confidence: {detected_key['confidence']:.1%}")
+            parts.append("")
+
+            if detected_key['mode'] == 'major':
+                parts.append("  Major characteristics:")
+                parts.append("  - Bright, happy, resolved tonality")
+                parts.append("  - Scale formula: W-W-H-W-W-W-H")
+                parts.append("  - Common progressions: I-IV-V, I-V-vi-IV")
+            else:
+                parts.append("  Minor characteristics:")
+                parts.append("  - Darker, melancholic tonality")
+                parts.append("  - Scale formula: W-H-W-W-H-W-W (natural minor)")
+                parts.append("  - Common progressions: i-iv-v, i-VI-III-VII")
+            parts.append("")
+
+        # Pitch range
+        pitch_range = analysis.get('pitch_range')
+        if pitch_range:
+            low_note = self._midi_to_note_name(pitch_range['lowest'])
+            high_note = self._midi_to_note_name(pitch_range['highest'])
+
+            parts.append("PITCH RANGE:")
+            parts.append(f"  Lowest: {low_note} (MIDI {pitch_range['lowest']})")
+            parts.append(f"  Highest: {high_note} (MIDI {pitch_range['highest']})")
+            parts.append(f"  Span: {pitch_range['span']} semitones")
+            parts.append("")
+
+            # Range context
+            if pitch_range['span'] <= 12:
+                parts.append("  Range: Narrow (within 1 octave)")
+                parts.append("  Suggests: melodic line, single-note solo")
+            elif pitch_range['span'] <= 24:
+                parts.append("  Range: Moderate (1-2 octaves)")
+                parts.append("  Suggests: typical melodic range")
+            else:
+                parts.append("  Range: Wide (2+ octaves)")
+                parts.append("  Suggests: complex arrangement, multiple voices, or virtuosic playing")
+            parts.append("")
+
+        # Most common pitches
+        common_pitches = analysis.get('most_common_pitches', [])
+        if common_pitches:
+            parts.append("MOST COMMON PITCHES:")
+            for i, pitch_info in enumerate(common_pitches[:5], 1):
+                parts.append(f"  {i}. {pitch_info['note_name']} ({pitch_info['count']} occurrences)")
+            parts.append("")
+            parts.append("  These pitches form the core of the melody/harmony")
+            parts.append("")
+
+        # Common intervals
+        common_intervals = analysis.get('common_intervals', [])
+        if common_intervals:
+            interval_names = {
+                0: 'Unison/Repeat',
+                1: 'Minor 2nd (half step)',
+                2: 'Major 2nd (whole step)',
+                3: 'Minor 3rd',
+                4: 'Major 3rd',
+                5: 'Perfect 4th',
+                6: 'Tritone',
+                7: 'Perfect 5th',
+                8: 'Minor 6th',
+                9: 'Major 6th',
+                10: 'Minor 7th',
+                11: 'Major 7th',
+                12: 'Octave'
+            }
+
+            parts.append("COMMON INTERVALS:")
+            for i, interval_info in enumerate(common_intervals[:5], 1):
+                semitones = interval_info['semitones']
+                abs_semitones = abs(semitones)
+                direction = "up" if semitones > 0 else "down" if semitones < 0 else "repeat"
+                name = interval_names.get(abs_semitones, f'{abs_semitones} semitones')
+                parts.append(f"  {i}. {name} ({direction}) - {interval_info['count']} times")
+            parts.append("")
+
+        return '\n'.join(parts)
+
 
 def export_lick_to_midi(lick: Dict, key: Note, output_path: str, tempo: int = 120) -> str:
     """

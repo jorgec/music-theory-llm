@@ -59,13 +59,48 @@
 - Tempo control (60-200 BPM)
 - **src/midi_io.py** - Complete MIDI I/O module
 
-### 7. Clean System (No Emojis)
+### 7. MIDI Analysis with Theory
+- **Comprehensive MIDI file analysis** (single or multi-track)
+- **Key detection** using Krumhansl-Schmuckler algorithm
+- **Pitch distribution analysis** (most common notes)
+- **Interval pattern detection** (melodic movement)
+- **Automatic theory explanations** (diatonic chords, scale formulas)
+- Confidence scoring for key detection
+- Track-by-track breakdown
+- **Enhanced src/midi_io.py** with analyze_midi_with_theory()
+
+### 8. Audio Analysis with Theory
+- **Audio file analysis** (WAV, MP3, FLAC, OGG, M4A, AAC)
+- **Tempo detection** with confidence scoring
+- **Key detection** from chromagram analysis
+- **Harmonic analysis** (harmonic vs percussive separation)
+- **Spectral features** (centroid, rolloff)
+- **Prominent pitch detection**
+- Beat time extraction
+- **Automatic theory explanations** (tempo context, key characteristics)
+- **src/audio_analyzer.py** - Complete audio analysis module
+- Requires librosa and soundfile
+
+### 9. Quality of Life Scripts
+- **7 command-line scripts** with full parameter support
+- **run.py** - Interactive master menu system
+- **run_lick_recommender.py** - Lick recommendations with theory/tablature/MIDI
+- **run_progression_recommender.py** - Progression recommendations with theory/MIDI
+- **run_tablature.py** - Tablature generation with validation
+- **run_midi_export.py** - MIDI export for licks and progressions
+- **run_midi_analyzer.py** - MIDI file analysis with theory
+- **run_audio_analyzer.py** - Audio file analysis with theory
+- All scripts include --help and comprehensive examples
+- Sensible defaults for all parameters
+- Batch processing support
+
+### 10. Clean System (No Emojis)
 - All files use ASCII-only characters
 - Maximum terminal compatibility
 - Professional output formatting
 - Removed all non-standard characters
 
-### 8. Modular Setup System (Mac M1/M2 Compatible)
+### 11. Modular Setup System (Mac M1/M2 Compatible)
 - **setup/01_environment.sh** - Python venv setup
 - **setup/02_dependencies.sh** - Dependency installation
 - **setup/03_data.sh** - Data directory preparation
@@ -74,7 +109,7 @@
 - Full ARM64/Apple Silicon support
 - PyTorch MPS (Metal Performance Shaders) detection
 
-### 9. Comprehensive Testing & Validation
+### 12. Comprehensive Testing & Validation
 - All Python files pass syntax validation
 - All imports verified working
 - Training configuration validated
@@ -89,9 +124,19 @@
 ### Core System Files
 - `src/theory_explainer.py` - Music theory explanation engine (NEW)
 - `src/lick_tablature.py` - Tablature generation system (NEW)
-- `src/midi_io.py` - MIDI input/output module (NEW)
+- `src/midi_io.py` - MIDI input/output module with theory analysis (NEW, ENHANCED)
+- `src/audio_analyzer.py` - Audio analysis with tempo/key detection (NEW)
 - `src/recommender.py` - Integrated theory explainer (MODIFIED)
 - `train_priority_styles.py` - 700 epoch configuration (MODIFIED)
+
+### Quality of Life Scripts
+- `run.py` - Interactive master menu system (NEW)
+- `run_lick_recommender.py` - Lick recommendations (NEW)
+- `run_progression_recommender.py` - Progression recommendations (NEW)
+- `run_tablature.py` - Tablature generation (NEW)
+- `run_midi_export.py` - MIDI export tool (NEW)
+- `run_midi_analyzer.py` - MIDI file analyzer (NEW)
+- `run_audio_analyzer.py` - Audio file analyzer (NEW)
 
 ### Demo Scripts
 - `demo_complete_artist_showcase.py` - Full system showcase (MODIFIED)
@@ -112,6 +157,7 @@
 - `SANITY_CHECK_REPORT.md` - Comprehensive validation report (NEW)
 - `TABLATURE_VALIDATION_REPORT.md` - Tablature feature documentation (NEW)
 - `MIDI_IO_REPORT.md` - MIDI I/O feature documentation (NEW)
+- `QOL_SCRIPTS_DOCUMENTATION.md` - Complete QoL scripts guide (NEW)
 - `FINAL_SUMMARY.md` - This document (MODIFIED)
 
 ---
@@ -131,7 +177,38 @@ source venv/bin/activate
 ./setup/04_verify.sh
 ```
 
-### 2. Run Demonstrations
+### 2. Use Quality of Life Scripts (Recommended)
+```bash
+source venv/bin/activate
+
+# Interactive menu (easiest way to start)
+python run.py
+
+# Or use individual scripts directly:
+
+# Get lick recommendations
+python run_lick_recommender.py --style rock_fusion --key E --num 5
+
+# Get chord progression recommendations
+python run_progression_recommender.py --style jazz --num 5
+
+# Generate tablature
+python run_tablature.py --style blues --key A
+
+# Export to MIDI
+python run_midi_export.py --lick --style rock_fusion --key E
+
+# Analyze MIDI files
+python run_midi_analyzer.py --file song.mid
+
+# Analyze audio files (requires librosa)
+python run_audio_analyzer.py --file song.wav
+
+# See full documentation
+cat QOL_SCRIPTS_DOCUMENTATION.md
+```
+
+### 3. Run Demonstrations
 ```bash
 source venv/bin/activate
 
@@ -151,7 +228,7 @@ python demo_midi_io.py
 python test_theory_explanations.py
 ```
 
-### 3. Train Models
+### 4. Train Models
 ```bash
 # Train all styles (700 epochs each)
 python train_priority_styles.py
