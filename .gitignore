@@ -67,3 +67,6 @@ wandb/
 .coverage
 .pytest_cache/
 htmlcov/
+
+# Generated outputs (MIDI files, etc.)
+outputs/
