@@ -20,63 +20,63 @@ from src.tokenizer import MusicTheoryTokenizer
 
 PRIORITY_STYLES = ['neo_soul', 'blues', 'progressive_metal', 'rock_fusion', 'jazz', 'metalcore']
 
-# REAL-WORLD PRODUCTION-READY CONFIGURATIONS
-# Optimized for comprehensive, professional-grade artist-specific modeling
-# 300 EPOCHS for maximum learning and artist signature capture
+# ULTIMATE PRODUCTION MODEL - 700 EPOCHS
+# Maximum model capacity with significantly increased parameters
+# Professional-grade, research-level training for complete artist mastery
 STYLE_CONFIGS = {
     'neo_soul': {
-        'd_model': 640,  # INCREASED for Jack Gardiner, Asato, Basilio sophistication
-        'num_layers': 10,  # Maximum depth for advanced voicings
-        'epochs': 300,  # REAL-WORLD comprehensive training
-        'batch_size': 24,  # Reduced for better gradient stability
-        'learning_rate': 3e-5,  # Lower LR for extended training stability
-        'warmup_epochs': 15,  # Extended warmup for 300 epoch training
-        'description': 'Neo Soul masters: Jack Gardiner, Mateus Asato, Lari Basilio - advanced voicings'
+        'd_model': 1024,  # SIGNIFICANTLY INCREASED (60% from 640) for ultimate sophistication
+        'num_layers': 12,  # Maximum depth for complex jazz-influenced voicings
+        'epochs': 700,  # ULTIMATE comprehensive training (2.3x from 300)
+        'batch_size': 20,  # Smaller for better gradient quality with large model
+        'learning_rate': 2e-5,  # Lower LR for extended ultra-stable training
+        'warmup_epochs': 30,  # Extended warmup for 700 epoch training
+        'description': 'Neo Soul masters: Jack Gardiner, Mateus Asato, Lari Basilio - ultimate voicing mastery'
     },
     'blues': {
-        'd_model': 512,  # INCREASED for Eric Johnson complexity
-        'num_layers': 8,  # Deeper for intervallic voicings
-        'epochs': 300,  # REAL-WORLD comprehensive training
-        'batch_size': 24,
-        'learning_rate': 3.5e-5,  # Optimized for extended training
-        'warmup_epochs': 15,
-        'description': 'Blues mastery: Eric Johnson (intervallic chords, open strings), Mayer, Smith, Bonamassa'
+        'd_model': 768,  # SIGNIFICANTLY INCREASED (50% from 512) for Eric Johnson nuances
+        'num_layers': 10,  # Deeper for capturing intervallic chord subtleties
+        'epochs': 700,  # ULTIMATE comprehensive training
+        'batch_size': 20,
+        'learning_rate': 2.5e-5,  # Optimized for ultra-extended training
+        'warmup_epochs': 30,
+        'description': 'Blues mastery: Eric Johnson (complete intervallic mastery), Mayer, Smith, Bonamassa'
     },
     'progressive_metal': {
-        'd_model': 640,  # INCREASED for I Built the Sky, Intervals, Plini
-        'num_layers': 10,  # Maximum depth for ambient tapping and technical complexity
-        'epochs': 300,  # REAL-WORLD comprehensive training
-        'batch_size': 24,
-        'learning_rate': 3e-5,
-        'warmup_epochs': 15,
-        'description': 'Prog Metal: I Built the Sky (ambient tapping), Intervals, Plini - technical mastery'
+        'd_model': 1024,  # SIGNIFICANTLY INCREASED (60% from 640) for ambient complexity
+        'num_layers': 12,  # Maximum depth for I Built the Sky atmospheric nuances
+        'epochs': 700,  # ULTIMATE comprehensive training
+        'batch_size': 20,
+        'learning_rate': 2e-5,
+        'warmup_epochs': 30,
+        'description': 'Prog Metal: I Built the Sky (ambient mastery), Intervals, Plini - ultimate technical depth'
     },
     'rock_fusion': {
-        'd_model': 768,  # MAXIMUM PRIORITY: Guthrie Govan, Greg Howe, Gambale
-        'num_layers': 12,  # DEEPEST MODEL for ultimate fusion mastery
-        'epochs': 300,  # REAL-WORLD comprehensive training
-        'batch_size': 20,  # Smallest batch for maximum learning quality
-        'learning_rate': 2.5e-5,  # Lowest LR for maximum stability
-        'warmup_epochs': 20,  # Longest warmup for largest model
-        'description': 'FUSION MASTERS: Guthrie Govan (complete technique), Greg Howe (legato/tapping), Gambale, Holdsworth'
+        'd_model': 1152,  # MAXIMUM MODEL SIZE (50% from 768) - Guthrie Govan complete mastery
+        'num_layers': 14,  # DEEPEST POSSIBLE MODEL for ultimate fusion sophistication
+        'epochs': 700,  # ULTIMATE comprehensive training
+        'batch_size': 16,  # Smallest batch for maximum learning quality on largest model
+        'learning_rate': 1.5e-5,  # Lowest LR for maximum ultra-stability
+        'warmup_epochs': 35,  # Longest warmup for largest model
+        'description': 'FUSION MASTERS: Guthrie Govan (COMPLETE mastery), Greg Howe, Gambale, Holdsworth - ULTIMATE'
     },
     'jazz': {
-        'd_model': 640,  # INCREASED for jazz sophistication
-        'num_layers': 10,  # Maximum depth for complex harmony
-        'epochs': 300,  # REAL-WORLD comprehensive training
-        'batch_size': 24,
-        'learning_rate': 3e-5,
-        'warmup_epochs': 15,
-        'description': 'Jazz legends: Chick Corea, Pat Metheny, Allan Holdsworth - advanced harmony mastery'
+        'd_model': 1024,  # SIGNIFICANTLY INCREASED (60% from 640) for advanced harmony
+        'num_layers': 12,  # Maximum depth for bebop, altered scales, complex theory
+        'epochs': 700,  # ULTIMATE comprehensive training
+        'batch_size': 20,
+        'learning_rate': 2e-5,
+        'warmup_epochs': 30,
+        'description': 'Jazz legends: Chick Corea, Pat Metheny, Allan Holdsworth - complete harmonic mastery'
     },
     'metalcore': {
-        'd_model': 512,  # INCREASED for modern metalcore
-        'num_layers': 8,  # Deeper for technical precision
-        'epochs': 300,  # REAL-WORLD comprehensive training
-        'batch_size': 24,
-        'learning_rate': 3.5e-5,
-        'warmup_epochs': 15,
-        'description': 'Modern metalcore: Architects, Polaris, Invent Animate - djent, breakdowns, atmosphere'
+        'd_model': 768,  # SIGNIFICANTLY INCREASED (50% from 512) for modern djent
+        'num_layers': 10,  # Deeper for technical precision and polyrhythmic complexity
+        'epochs': 700,  # ULTIMATE comprehensive training
+        'batch_size': 20,
+        'learning_rate': 2.5e-5,
+        'warmup_epochs': 30,
+        'description': 'Modern metalcore: Architects, Polaris, Invent Animate - ultimate djent mastery'
     }
 }
 

@@ -21,6 +21,7 @@ from .theory import ChordProgression, Chord, Scale, Note
 from .models import MusicTheoryTransformer
 from .models.melody_harmonization import MelodyGenerator
 from .tokenizer import MusicTheoryTokenizer
+from .theory_explainer import MusicTheoryExplainer
 
 
 @dataclass
@@ -47,6 +48,7 @@ class ChordProgressionRecommender:
         self.data_dir = Path(data_dir)
         self.progressions_by_style = {}
         self.transition_probs = {}
+        self.theory_explainer = MusicTheoryExplainer()
 
         # Load all style-specific progressions
         self._load_progressions()
@@ -174,27 +176,10 @@ class ChordProgressionRecommender:
         return min(score, 1.0)
 
     def _explain_progression(self, prog: ChordProgression, style: str) -> str:
-        """Generate human-readable explanation for why this progression is recommended"""
-        chord_names = [c.to_symbol() for c in prog.chords]
-
-        explanations = []
-
-        # Style-specific explanations
-        if style == 'neo_soul':
-            if any('9' in str(c.quality.value) for c in prog.chords):
-                explanations.append("Features extended chords typical of neo soul")
-        elif style == 'blues':
-            if any('7' in str(c.quality.value) for c in prog.chords):
-                explanations.append("Uses dominant 7th chords characteristic of blues")
-        elif style == 'progressive_metal':
-            if prog.scale and any(hasattr(prog.scale, 'mode') for _ in [1]):
-                explanations.append("Modal progression common in progressive metal")
-
-        base_explanation = f"Progression: {' → '.join(chord_names[:4])}"
-        if explanations:
-            base_explanation += f" - {'; '.join(explanations)}"
-
-        return base_explanation
+        """Generate comprehensive music theory explanation for why this progression is recommended"""
+        # Use the theory explainer for detailed analysis
+        theory_explanation = self.theory_explainer.explain_progression(prog, style)
+        return theory_explanation
 
     def recommend_next_chord(
         self,
@@ -344,6 +329,7 @@ class LickRecommender:
 
     def __init__(self):
         self.lick_database = self._build_lick_database()
+        self.theory_explainer = MusicTheoryExplainer()
 
     def _build_lick_database(self) -> Dict[str, List[Dict]]:
         """Build database of style-specific licks"""
@@ -1039,19 +1025,28 @@ class LickRecommender:
 
             score = 1.0 - (i * 0.15)
 
+            # Generate comprehensive theory explanation for this lick
+            theory_explanation = self.theory_explainer.explain_lick(lick, key, style)
+
+            # Combine basic description with theory explanation
+            full_explanation = f"{lick['description']}\n\n{theory_explanation}"
+
             recommendations.append(Recommendation(
                 item={
                     'name': lick['name'],
                     'intervals': lick['intervals'],
                     'transposed_notes': transposed,
-                    'rhythm': lick['rhythm']
+                    'rhythm': lick['rhythm'],
+                    'techniques': lick.get('techniques', [])
                 },
                 score=score,
                 style=style,
-                explanation=lick['description'],
+                explanation=full_explanation,
                 metadata={
                     'key': key.name,
-                    'rhythm': lick['rhythm']
+                    'rhythm': lick['rhythm'],
+                    'basic_description': lick['description'],
+                    'theory_explanation': theory_explanation
                 }
             ))
 
