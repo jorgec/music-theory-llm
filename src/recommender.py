@@ -1859,22 +1859,101 @@ class LickRecommender:
         if style not in self.lick_database:
             return []
 
-        # Sort licks by quality (prioritize advanced licks)
+        # Sort licks by quality (prioritize musical, advanced licks)
         def lick_quality_score(lick):
             score = 0
-            # Prefer licks with chord context (advanced)
+            intervals = lick['intervals']
+
+            # Musicality is MORE important than theory metadata
+            # Check for artist authenticity (field or in name)
+            has_artist = 'artist' in lick and lick['artist'] and lick['artist'] != 'Unknown'
+            # Also check for classic artist names in the lick name
+            artist_keywords = ['BB King', 'Albert King', 'Muddy Waters', 'SRV', 'Stevie Ray',
+                             'T-Bone', 'John Lee', 'Buddy Guy', 'Hendrix', 'Clapton',
+                             'Double Stop', 'Turnaround', 'John Mayer', 'Joe Bonamassa']
+            lick_name = lick.get('name', '')
+            has_artist_in_name = any(artist in lick_name for artist in artist_keywords)
+
+            if has_artist or has_artist_in_name:
+                # Authentic artist licks get priority
+                score += 80
+
+            # Advanced features (theory depth) - reduced weighting
             if 'chord_context' in lick and lick['chord_context']:
-                score += 100
-            # Prefer licks with target notes specified
+                score += 35  # Reduced from 100
             if 'target_notes' in lick and lick['target_notes']:
-                score += 50
-            # Prefer licks with functional harmony
+                score += 25  # Reduced from 50
             if 'functional_harmony' in lick and lick['functional_harmony']:
-                score += 50
-            # Prefer longer, more complex licks
-            score += len(lick['intervals']) * 2
-            # Prefer licks with more unique intervals (complexity)
-            score += len(set(lick['intervals'])) * 3
+                score += 25  # Reduced from 50
+
+            # 1. Length scoring (prefer musical phrase lengths)
+            length = len(intervals)
+            if 6 <= length <= 12:
+                score += 50  # Perfect musical phrase length
+            elif 13 <= length <= 16:
+                score += 30  # Still good
+            elif length > 25:
+                score -= 70  # Way too long, likely a run
+            elif length > 20:
+                score -= 40  # Too long
+            elif length <= 5:
+                score -= 10  # Too short
+            else:
+                score += 15  # Ok
+
+            # 2. Detect boring chromatic/scalar runs (check this FIRST)
+            ascending_steps = sum(1 for i in range(1, length) if intervals[i] == intervals[i-1] + 1)
+            descending_steps = sum(1 for i in range(1, length) if intervals[i] == intervals[i-1] - 1)
+            total_steps = ascending_steps + descending_steps
+            step_ratio = total_steps / (length - 1) if length > 1 else 0
+
+            # Heavy penalty for runs (even if they have direction changes)
+            if step_ratio > 0.6:
+                score -= 100  # Definitely a boring run
+            elif step_ratio > 0.4:
+                score -= 50  # Probably too stepwise
+            elif step_ratio > 0.2:
+                score -= 20  # Some stepwise is ok
+            else:
+                score += 20  # Arpeggio-based or interesting intervals
+
+            # 3. Check for melodic contour (direction changes = musical)
+            # But only reward if it's NOT a stepwise run
+            if length > 3 and step_ratio < 0.5:
+                direction_changes = 0
+                for i in range(1, length - 1):
+                    # Detect peaks and valleys
+                    if (intervals[i] > intervals[i-1] and intervals[i] > intervals[i+1]) or \
+                       (intervals[i] < intervals[i-1] and intervals[i] < intervals[i+1]):
+                        direction_changes += 1
+
+                # Reward licks with 2-4 direction changes (musical phrasing)
+                if 2 <= direction_changes <= 4:
+                    score += 70
+                elif direction_changes >= 5:
+                    score += 40
+                elif direction_changes == 1:
+                    score += 20
+                else:
+                    # Monotonous (no direction changes)
+                    score -= 30
+
+            # 4. Intervallic variety (but not just chromatic steps)
+            unique_intervals = len(set(intervals))
+            if 6 <= unique_intervals <= 12:
+                score += 25  # Good variety
+            elif unique_intervals > 15:
+                score -= 10  # Probably a chromatic run
+
+            # 5. Check for leaps (musical interest)
+            if length > 3:
+                large_leaps = sum(1 for i in range(1, length)
+                                if abs(intervals[i] - intervals[i-1]) >= 5)
+                if 1 <= large_leaps <= 3:
+                    score += 30  # Good use of leaps
+                elif large_leaps > 3:
+                    score += 10  # Some leaps
+
             return score
 
         # Sort licks by quality score (highest first)
