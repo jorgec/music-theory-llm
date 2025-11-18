@@ -20,62 +20,63 @@ from src.tokenizer import MusicTheoryTokenizer
 
 PRIORITY_STYLES = ['neo_soul', 'blues', 'progressive_metal', 'rock_fusion', 'jazz', 'metalcore']
 
-# Optimized configurations for each priority style with increased epochs and parameters
-# ENHANCED for artist-specific nuances: Eric Johnson, Greg Howe, and all signature artists
+# REAL-WORLD PRODUCTION-READY CONFIGURATIONS
+# Optimized for comprehensive, professional-grade artist-specific modeling
+# 300 EPOCHS for maximum learning and artist signature capture
 STYLE_CONFIGS = {
     'neo_soul': {
-        'd_model': 576,  # Further increased from 512 for Asato/Basilio nuances
-        'num_layers': 9,  # Deeper for complex voicings
-        'epochs': 180,  # Extended training for artist-specific patterns
-        'batch_size': 28,  # Slightly reduced for better gradient updates
-        'learning_rate': 4e-5,  # Fine-tuned LR for stability
-        'warmup_epochs': 8,  # Longer warmup
-        'description': 'Extended chords, chromatic movement, gospel influences (Asato, Basilio)'
+        'd_model': 640,  # INCREASED for Jack Gardiner, Asato, Basilio sophistication
+        'num_layers': 10,  # Maximum depth for advanced voicings
+        'epochs': 300,  # REAL-WORLD comprehensive training
+        'batch_size': 24,  # Reduced for better gradient stability
+        'learning_rate': 3e-5,  # Lower LR for extended training stability
+        'warmup_epochs': 15,  # Extended warmup for 300 epoch training
+        'description': 'Neo Soul masters: Jack Gardiner, Mateus Asato, Lari Basilio - advanced voicings'
     },
     'blues': {
-        'd_model': 448,  # Increased from 384 for Eric Johnson, Mayer, Smith nuances
-        'num_layers': 7,  # Deeper for capturing subtle techniques
-        'epochs': 160,  # More epochs for Eric Johnson\'s intervallic complexity
-        'batch_size': 28,
-        'learning_rate': 6e-5,  # Adjusted for larger model
-        'warmup_epochs': 7,
-        'description': 'Blues mastery: Mayer, Smith, Eric Johnson (open voicings, add9), Bonamassa'
+        'd_model': 512,  # INCREASED for Eric Johnson complexity
+        'num_layers': 8,  # Deeper for intervallic voicings
+        'epochs': 300,  # REAL-WORLD comprehensive training
+        'batch_size': 24,
+        'learning_rate': 3.5e-5,  # Optimized for extended training
+        'warmup_epochs': 15,
+        'description': 'Blues mastery: Eric Johnson (intervallic chords, open strings), Mayer, Smith, Bonamassa'
     },
     'progressive_metal': {
-        'd_model': 576,  # Increased from 512
-        'num_layers': 9,  # Deeper for Intervals/Plini technical complexity
-        'epochs': 180,  # Extended for polyrhythmic patterns
-        'batch_size': 28,
-        'learning_rate': 4e-5,
-        'warmup_epochs': 8,
-        'description': 'Modal progressions, polymodal harmony, technical riffs (Intervals, Plini)'
+        'd_model': 640,  # INCREASED for I Built the Sky, Intervals, Plini
+        'num_layers': 10,  # Maximum depth for ambient tapping and technical complexity
+        'epochs': 300,  # REAL-WORLD comprehensive training
+        'batch_size': 24,
+        'learning_rate': 3e-5,
+        'warmup_epochs': 15,
+        'description': 'Prog Metal: I Built the Sky (ambient tapping), Intervals, Plini - technical mastery'
     },
     'rock_fusion': {
-        'd_model': 640,  # HIGHEST priority: Greg Howe, Gambale, Holdsworth
-        'num_layers': 10,  # Maximum depth for fusion complexity
-        'epochs': 200,  # EXTENDED: Greg Howe emphasis with high priority
-        'batch_size': 24,  # Smaller batch for better learning
-        'learning_rate': 3e-5,  # Lower LR for stable convergence
-        'warmup_epochs': 10,  # Extended warmup for large model
-        'description': 'HIGH PRIORITY: Greg Howe (legato, tapping), Gambale (sweep), Holdsworth (fusion)'
+        'd_model': 768,  # MAXIMUM PRIORITY: Guthrie Govan, Greg Howe, Gambale
+        'num_layers': 12,  # DEEPEST MODEL for ultimate fusion mastery
+        'epochs': 300,  # REAL-WORLD comprehensive training
+        'batch_size': 20,  # Smallest batch for maximum learning quality
+        'learning_rate': 2.5e-5,  # Lowest LR for maximum stability
+        'warmup_epochs': 20,  # Longest warmup for largest model
+        'description': 'FUSION MASTERS: Guthrie Govan (complete technique), Greg Howe (legato/tapping), Gambale, Holdsworth'
     },
     'jazz': {
-        'd_model': 576,  # Increased from 512
-        'num_layers': 9,  # Deeper for jazz sophistication
-        'epochs': 180,  # Extended for Corea, Metheny, Holdsworth complexity
-        'batch_size': 28,
-        'learning_rate': 4e-5,
-        'warmup_epochs': 8,
-        'description': 'Advanced jazz harmony, bebop, altered scales (Corea, Metheny, Holdsworth)'
+        'd_model': 640,  # INCREASED for jazz sophistication
+        'num_layers': 10,  # Maximum depth for complex harmony
+        'epochs': 300,  # REAL-WORLD comprehensive training
+        'batch_size': 24,
+        'learning_rate': 3e-5,
+        'warmup_epochs': 15,
+        'description': 'Jazz legends: Chick Corea, Pat Metheny, Allan Holdsworth - advanced harmony mastery'
     },
     'metalcore': {
-        'd_model': 448,  # Increased from 384
-        'num_layers': 7,  # Deeper for modern metalcore
-        'epochs': 160,  # Extended for Architects, Polaris, Invent Animate
-        'batch_size': 28,
-        'learning_rate': 6e-5,
-        'warmup_epochs': 7,
-        'description': 'Modern metalcore with djent, breakdowns, atmosphere (Architects, Polaris, Invent Animate)'
+        'd_model': 512,  # INCREASED for modern metalcore
+        'num_layers': 8,  # Deeper for technical precision
+        'epochs': 300,  # REAL-WORLD comprehensive training
+        'batch_size': 24,
+        'learning_rate': 3.5e-5,
+        'warmup_epochs': 15,
+        'description': 'Modern metalcore: Architects, Polaris, Invent Animate - djent, breakdowns, atmosphere'
     }
 }
 

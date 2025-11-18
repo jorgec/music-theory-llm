@@ -405,6 +405,34 @@ class LickRecommender:
                     'description': 'Basilio\'s signature hybrid picking melodic lines',
                     'techniques': ['hybrid picking', 'dynamic control', 'articulation']
                 },
+                {
+                    'name': 'Jack Gardiner Advanced Voicing Run',
+                    'intervals': [0, 4, 7, 11, 14, 16, 19, 21],
+                    'rhythm': 'sophisticated-melodic',
+                    'description': 'Jack Gardiner\'s sophisticated chord voicing runs with jazz influence',
+                    'techniques': ['advanced voicings', 'voice leading', 'jazz harmony', 'smooth legato']
+                },
+                {
+                    'name': 'Jack Gardiner Pentatonic Sophistication',
+                    'intervals': [0, 2, 4, 7, 9, 12, 14, 16, 19],
+                    'rhythm': 'pentatonic-advanced',
+                    'description': 'Gardiner\'s advanced pentatonic approach with extensions and chromatics',
+                    'techniques': ['pentatonic mastery', 'chromatic embellishment', 'melodic development']
+                },
+                {
+                    'name': 'Jack Gardiner Legato Flow',
+                    'intervals': [0, 2, 4, 5, 7, 9, 11, 12, 14],
+                    'rhythm': 'fluid-legato',
+                    'description': 'Gardiner\'s smooth legato lines blending neo soul and fusion',
+                    'techniques': ['legato technique', 'hammer-ons/pull-offs', 'fluid phrasing']
+                },
+                {
+                    'name': 'Jack Gardiner Chord Melody Fusion',
+                    'intervals': [0, 4, 7, 11, 14, 17, 21, 24],
+                    'rhythm': 'chord-melody-jazz',
+                    'description': 'Gardiner\'s jazz-influenced chord melody approach',
+                    'techniques': ['chord melody', 'drop-2 voicings', 'jazz voicings', 'melodic continuity']
+                },
             ],
             'blues': [
                 {
@@ -754,6 +782,34 @@ class LickRecommender:
                     'description': 'Plini\'s signature cascading tapped arpeggios',
                     'techniques': ['two-hand tapping', 'cascading patterns', 'clean tone']
                 },
+                {
+                    'name': 'I Built the Sky Ambient Tapping',
+                    'intervals': [0, 7, 12, 16, 19, 24, 28, 31],
+                    'rhythm': 'ambient-atmospheric',
+                    'description': 'I Built the Sky\'s ethereal tapped arpeggios with delay and reverb',
+                    'techniques': ['two-hand tapping', 'delay/reverb', 'clean tone', 'atmospheric']
+                },
+                {
+                    'name': 'I Built the Sky Chord-Based Tapping',
+                    'intervals': [0, 4, 7, 11, 14, 16, 19, 23],
+                    'rhythm': 'chord-tap-melody',
+                    'description': 'I Built the Sky\'s signature chord-based tapping patterns',
+                    'techniques': ['chord tapping', 'right-hand melody', 'arpeggio voicings']
+                },
+                {
+                    'name': 'I Built the Sky Wide Interval Melody',
+                    'intervals': [0, 12, 7, 19, 4, 16, 11, 23],
+                    'rhythm': 'melodic-wide-intervals',
+                    'description': 'I Built the Sky\'s melodic lines with wide intervallic jumps',
+                    'techniques': ['wide intervals', 'tapping', 'melodic construction', 'sustain']
+                },
+                {
+                    'name': 'I Built the Sky Reverb Cascade',
+                    'intervals': [0, 5, 9, 12, 17, 21, 24, 29, 33],
+                    'rhythm': 'cascading-ambient',
+                    'description': 'I Built the Sky\'s cascading patterns with heavy reverb/delay',
+                    'techniques': ['cascading taps', 'delay trails', 'reverb wash', 'ambient']
+                },
             ],
             'rock_fusion': [
                 {
@@ -839,6 +895,62 @@ class LickRecommender:
                     'rhythm': 'rock-jazz-fusion',
                     'description': 'Howe\'s perfect blend of rock aggression with jazz vocabulary',
                     'techniques': ['blues-jazz fusion', 'aggressive vibrato', 'jazz phrasing', 'rock attitude']
+                },
+                {
+                    'name': 'Guthrie Govan Modal Mastery',
+                    'intervals': [0, 2, 4, 6, 7, 9, 11, 13, 14],
+                    'rhythm': 'modal-sophisticated',
+                    'description': 'Guthrie Govan\'s complete modal vocabulary across all modes',
+                    'techniques': ['modal theory', 'lydian/dorian/phrygian', 'advanced theory', 'musical storytelling']
+                },
+                {
+                    'name': 'Guthrie Govan Chromatic Lines',
+                    'intervals': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+                    'rhythm': 'chromatic-fluid',
+                    'description': 'Govan\'s signature chromatic approach with perfect voice leading',
+                    'techniques': ['chromatic mastery', 'voice leading', 'tension/resolution', 'musical logic']
+                },
+                {
+                    'name': 'Guthrie Govan Perfect Bends',
+                    'intervals': [0, 3, 5, 5, 7, 8, 8, 10, 12],
+                    'rhythm': 'expressive-vocal',
+                    'description': 'Govan\'s perfectly controlled string bends with vocal-like expression',
+                    'techniques': ['perfect pitch bends', 'microtonal control', 'vibrato mastery', 'expression']
+                },
+                {
+                    'name': 'Guthrie Govan Hybrid Picking Mastery',
+                    'intervals': [0, 4, 7, 9, 12, 16, 19, 21, 24],
+                    'rhythm': 'hybrid-technical',
+                    'description': 'Govan\'s flawless hybrid picking across all styles',
+                    'techniques': ['hybrid picking excellence', 'pick + fingers', 'chicken picking', 'country fusion']
+                },
+                {
+                    'name': 'Guthrie Govan Pentatonic Vocabulary',
+                    'intervals': [0, 2, 4, 7, 9, 12, 14, 16, 19, 21],
+                    'rhythm': 'pentatonic-masterclass',
+                    'description': 'Govan\'s comprehensive pentatonic vocabulary with extensions',
+                    'techniques': ['pentatonic mastery', 'extensions', 'superimposition', 'creative application']
+                },
+                {
+                    'name': 'Guthrie Govan Arpeggio Sequences',
+                    'intervals': [0, 4, 7, 12, 16, 19, 24, 28, 31],
+                    'rhythm': 'arpeggio-technical',
+                    'description': 'Govan\'s sophisticated arpeggio sequences with perfect technique',
+                    'techniques': ['sweep picking', 'economy picking', 'legato arpeggios', 'technical precision']
+                },
+                {
+                    'name': 'Guthrie Govan Altered Dominants',
+                    'intervals': [0, 1, 3, 4, 6, 8, 10, 11, 12],
+                    'rhythm': 'altered-jazz',
+                    'description': 'Govan\'s jazz-influenced altered dominant phrases',
+                    'techniques': ['altered scale', '7alt chords', 'jazz theory', 'outside playing']
+                },
+                {
+                    'name': 'Guthrie Govan Country-Fusion',
+                    'intervals': [0, 2, 4, 5, 7, 9, 11, 12],
+                    'rhythm': 'country-fusion-blend',
+                    'description': 'Govan\'s unique blend of country and fusion techniques',
+                    'techniques': ['country licks', 'fusion vocabulary', 'hybrid picking', 'style blending']
                 },
             ],
             'metalcore': [
