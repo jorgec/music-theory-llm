@@ -16,7 +16,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 from src.recommender import MusicRecommendationSystem
-from src.theory import Note, Chord, ChordQuality, Scale, ChordProgression, ScaleMode
+from src.theory import Note, Chord, ChordQuality, Scale, ChordProgression
 
 
 def print_section(title):
@@ -92,8 +92,10 @@ def demonstrate_artist_licks(style, key_note, artist_filter, progression_desc=No
         # Show theory explanation (truncated for readability)
         print(f"\n   [THEORY EXPLANATION]:")
         explanation_lines = lick_rec.explanation.split('\n')
-        for line in explanation_lines[:8]:  # Show first 8 lines
-            if line.strip() and not line.strip().startswith(lick['description']):
+        # Skip first line if it's the basic description
+        start_idx = 1 if len(explanation_lines) > 1 else 0
+        for line in explanation_lines[start_idx:start_idx+7]:  # Show 7 lines after description
+            if line.strip():
                 print(f"   {line}")
 
         print(f"\n   {'-'*76}\n")
